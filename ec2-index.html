@@ -128,6 +128,25 @@
     font-size:74px;
   }
 
+  .addrbox{
+    max-width:720px; margin:46px auto 0; background:linear-gradient(180deg,#14141c,#0b0b10);
+    border:1px solid var(--line); border-radius:20px; padding:28px;
+    display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:center;
+  }
+  .addr{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:14.5px; line-height:1.6; word-break:break-all; color:#e8e8ed;
+    flex:1; min-width:280px; text-align:left;
+  }
+  .copybtn{
+    padding:11px 24px; border-radius:980px; border:none; cursor:pointer;
+    background:#0071e3; color:#fff; font-size:15px; transition:background .25s, transform .25s;
+    font-family:inherit; white-space:nowrap;
+  }
+  .copybtn:hover{background:#0077ed; transform:translateY(-1px)}
+  .chainnote{max-width:720px; margin:20px auto 0; color:#6e6e73; font-size:13.5px; line-height:1.7; text-align:center}
+  .chainnote b{color:#a1a1a6}
+
   footer{
     padding:56px 20px 70px; text-align:center; color:#6e6e73; font-size:13px; line-height:2;
     border-top:1px solid var(--line); background:var(--bg2);
@@ -147,7 +166,7 @@
     <div class="links">
       <a href="#stack">技术栈</a>
       <a href="#numbers">这一页</a>
-      <a href="#next">下一步</a>
+      <a href="#sponsor">赞助</a>
       <a href="https://lichunh.github.io" target="_blank" rel="noopener">简历站</a>
     </div>
   </div>
@@ -205,18 +224,16 @@
   </div>
 </section>
 
-<section id="next">
+<section class="band" id="sponsor">
   <div class="wrap">
-    <div class="kicker reveal">What's next</div>
-    <h2 class="reveal">下一站：软路由。</h2>
-    <div class="feature reveal">
-      <div>
-        <h3>先有路，再有车。</h3>
-        <p>域名和服务器已经就位。接下来计划在这台机器上尝试云端路由与 VPN 网关 — RouterOS CHR 已经在候选名单里，家里的软路由则会留在家里，各司其职。</p>
-        <p>账号本身也做了全套防护： root 登录已开启 MFA 双因素验证，账单一有风吹草动就会报警。</p>
-      </div>
-      <div class="orb">🧭</div>
+    <div class="kicker reveal">Sponsor</div>
+    <h2 class="reveal">觉得有意思？<br>请我喝杯咖啡。</h2>
+    <p class="lead reveal">这个小站靠 AWS 抵扣金活着。如果你想赞助一点服务器费，欢迎通过加密货币打赏 — 走 <b style="color:#e8e8ed">Optimism 网络</b>发送 ETH 即可，手续费只要几分钱。</p>
+    <div class="addrbox reveal">
+      <span class="addr" id="walletAddr">0xb6f8976065069cDCdE4c16F68e79A276f32a71BE</span>
+      <button class="copybtn" id="copyBtn" type="button">复制地址</button>
     </div>
+    <p class="chainnote reveal">网络：<b>Ethereum · Optimism（OP Mainnet）</b>。发送前请务必确认钱包里选的是 Optimism 网络 — 转错网络的资产可能无法找回。这个地址只能收款，公开它不会带来资金风险。</p>
   </div>
 </section>
 
@@ -234,6 +251,16 @@
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const copyBtn = document.getElementById('copyBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const addr = document.getElementById('walletAddr').textContent.trim();
+      try { await navigator.clipboard.writeText(addr); copyBtn.textContent = '已复制 ✓'; }
+      catch (e) { copyBtn.textContent = '请长按地址复制'; }
+      setTimeout(() => { copyBtn.textContent = '复制地址'; }, 2200);
+    });
+  }
 </script>
 </body>
 </html>
