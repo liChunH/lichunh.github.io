@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Li — 你好</title>
+<meta name="description" content="Henry Li 的个人站点：运行在 AWS 云服务器上，经 henryli.duckdns.org 为你打开。">
+<style>
+  :root{
+    --bg:#000; --bg2:#0a0a0f; --card:#101016; --line:rgba(255,255,255,.08);
+    --txt:#f5f5f7; --dim:#86868b; --blue:#2997ff; --violet:#a259ff;
+    --grad:linear-gradient(90deg,#0090ff,#a259ff,#ff5e8a,#ff9f0a);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--txt);
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{background:var(--blue); color:#fff}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed; inset:0 0 auto 0; height:52px; z-index:50;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(22,22,23,.72); backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  nav .inner{width:min(1024px,92vw); display:flex; align-items:center; justify-content:space-between}
+  nav .logo{font-size:15px; font-weight:600; letter-spacing:.02em; color:var(--txt); text-decoration:none}
+  nav .links{display:flex; gap:34px}
+  nav .links a{color:#e8e8ed; text-decoration:none; font-size:12px; opacity:.85; transition:opacity .2s}
+  nav .links a:hover{opacity:1}
+  @media(max-width:640px){ nav .links{gap:18px} nav .links a:nth-child(3){display:none} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; text-align:center;
+    padding:170px 20px 120px;
+    background:
+      radial-gradient(900px 480px at 15% -10%, rgba(0,144,255,.28), transparent 60%),
+      radial-gradient(800px 420px at 85% 0%, rgba(162,89,255,.26), transparent 60%),
+      radial-gradient(700px 500px at 50% 115%, rgba(255,94,138,.16), transparent 60%),
+      var(--bg);
+  }
+  .eyebrow{
+    font-size:13px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; color:var(--blue);
+    margin-bottom:26px;
+  }
+  h1{
+    font-size:clamp(52px,9.5vw,108px); font-weight:700; line-height:1.04; letter-spacing:-.015em;
+  }
+  h1 .grad{
+    background:var(--grad); background-size:200% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 7s linear infinite;
+  }
+  @keyframes shine{ to{ background-position:200% 0 } }
+  .sub{
+    margin:30px auto 0; max-width:640px;
+    font-size:clamp(18px,2.6vw,24px); line-height:1.5; color:var(--dim); font-weight:400;
+  }
+  .sub b{color:var(--txt); font-weight:600}
+  .cta{margin-top:44px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
+  .btn{
+    display:inline-block; padding:13px 30px; border-radius:980px;
+    font-size:16px; text-decoration:none; transition:transform .25s, box-shadow .25s, background .25s;
+  }
+  .btn.primary{background:#0071e3; color:#fff}
+  .btn.primary:hover{background:#0077ed; transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,113,227,.45)}
+  .btn.ghost{color:var(--blue); border:1px solid rgba(41,151,255,.5)}
+  .btn.ghost:hover{background:rgba(41,151,255,.1); transform:translateY(-2px)}
+  .scrollhint{margin-top:84px; color:#55555c; font-size:12px; letter-spacing:.28em; animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+
+  /* ---------- Sections ---------- */
+  section{padding:110px 20px}
+  .wrap{width:min(1024px,92vw); margin:0 auto}
+  .kicker{font-size:14px; font-weight:600; color:var(--blue); letter-spacing:.14em; text-transform:uppercase; text-align:center}
+  h2{font-size:clamp(36px,5.6vw,58px); font-weight:700; text-align:center; letter-spacing:-.01em; margin-top:14px; line-height:1.12}
+  .lead{ text-align:center; color:var(--dim); font-size:clamp(16px,2vw,20px); line-height:1.6; max-width:680px; margin:22px auto 0 }
+
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:58px}
+  @media(max-width:840px){ .grid{grid-template-columns:1fr} }
+  .card{
+    background:linear-gradient(180deg,#14141c,#0b0b10);
+    border:1px solid var(--line); border-radius:22px; padding:34px 30px;
+    transition:transform .35s, border-color .35s, box-shadow .35s;
+  }
+  .card:hover{transform:translateY(-6px); border-color:rgba(255,255,255,.18); box-shadow:0 24px 48px rgba(0,0,0,.5)}
+  .card .icon{font-size:34px; margin-bottom:18px}
+  .card h3{font-size:21px; font-weight:600; margin-bottom:10px}
+  .card p{color:var(--dim); font-size:15px; line-height:1.65}
+  .card a{color:var(--blue); text-decoration:none; font-size:15px}
+  .card a:hover{text-decoration:underline}
+  .tag{
+    display:inline-block; font-size:11px; font-weight:600; letter-spacing:.08em;
+    padding:4px 10px; border-radius:980px; margin-bottom:16px;
+    color:#7ee2a8; background:rgba(48,209,88,.12); border:1px solid rgba(48,209,88,.25);
+  }
+  .tag.blue{color:#7cc4ff; background:rgba(41,151,255,.12); border-color:rgba(41,151,255,.25)}
+  .tag.violet{color:#cf9fff; background:rgba(162,89,255,.12); border-color:rgba(162,89,255,.28)}
+
+  .band{background:var(--bg2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:56px; text-align:center}
+  @media(max-width:840px){ .stats{grid-template-columns:repeat(2,1fr)} }
+  .stat .num{
+    font-size:clamp(38px,5vw,54px); font-weight:700;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .stat .lbl{color:var(--dim); font-size:14px; margin-top:8px}
+
+  .feature{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:70px}
+  @media(max-width:840px){ .feature{grid-template-columns:1fr} }
+  .feature h3{font-size:clamp(28px,4vw,40px); font-weight:700; line-height:1.15; letter-spacing:-.01em}
+  .feature p{color:var(--dim); font-size:17px; line-height:1.7; margin-top:16px}
+  .orb{
+    height:300px; border-radius:26px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(420px 260px at 25% 20%, rgba(0,144,255,.5), transparent 65%),
+      radial-gradient(420px 300px at 80% 85%, rgba(255,94,138,.42), transparent 65%),
+      radial-gradient(300px 220px at 75% 15%, rgba(162,89,255,.45), transparent 60%),
+      #0d0d13;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:74px;
+  }
+
+  footer{
+    padding:56px 20px 70px; text-align:center; color:#6e6e73; font-size:13px; line-height:2;
+    border-top:1px solid var(--line); background:var(--bg2);
+  }
+  footer a{color:#a1a1a6; text-decoration:none}
+  footer a:hover{color:#fff; text-decoration:underline}
+
+  .reveal{opacity:0; transform:translateY(34px); transition:opacity .9s ease, transform .9s ease}
+  .reveal.in{opacity:1; transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="#">Henry Li</a>
+    <div class="links">
+      <a href="#stack">技术栈</a>
+      <a href="#numbers">这一页</a>
+      <a href="#next">下一步</a>
+      <a href="https://lichunh.github.io" target="_blank" rel="noopener">简历站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">henryli.duckdns.org</div>
+  <h1>你好，我是<br><span class="grad">Henry Li。</span></h1>
+  <p class="sub">这一页不在某个模板网站上 — 它运行在<b>我自己的 AWS 云服务器</b>里，<br>穿过一个免费域名，来到你的屏幕上。</p>
+  <div class="cta">
+    <a class="btn primary" href="https://lichunh.github.io" target="_blank" rel="noopener">看看我的简历站</a>
+    <a class="btn ghost" href="#stack">这页是怎么做出来的 →</a>
+  </div>
+  <div class="scrollhint">向下滚动</div>
+</header>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="kicker reveal">Under the hood</div>
+    <h2 class="reveal">麻雀虽小，<br>五脏俱全。</h2>
+    <p class="lead reveal">从域名到服务器到页面，每一层都是真家伙 — 和大厂官网走的是同一条路，只是规模小一点。</p>
+    <div class="grid">
+      <div class="card reveal">
+        <span class="tag">● 运行中</span>
+        <div class="icon">☁️</div>
+        <h3>AWS 云服务器</h3>
+        <p>一台 EC2 t3.micro 实例，位于美国俄亥俄州机房，7×24 小时在线，专程为你送上这一页。</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag blue">免费域名</span>
+        <div class="icon">🌐</div>
+        <h3>henryli.duckdns.org</h3>
+        <p>通过 DuckDNS 免费注册的专属域名，精确指向这台服务器的弹性 IP — 输名字，就能找到它。</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag violet">GitHub Pages</span>
+        <div class="icon">📄</div>
+        <h3>简历站</h3>
+        <p>另一条线上，简历托管在 GitHub Pages：<a href="https://lichunh.github.io" target="_blank" rel="noopener">lichunh.github.io</a>，真简历正在赶来的路上。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="numbers">
+  <div class="wrap">
+    <div class="kicker reveal">By the numbers</div>
+    <h2 class="reveal">小成本，大折腾。</h2>
+    <div class="stats">
+      <div class="stat reveal"><div class="num">$200</div><div class="lbl">AWS 抵扣金，全程预算</div></div>
+      <div class="stat reveal"><div class="num">$0</div><div class="lbl">银行卡实际扣款</div></div>
+      <div class="stat reveal"><div class="num">24/7</div><div class="lbl">服务器在线时间</div></div>
+      <div class="stat reveal"><div class="num">1 页</div><div class="lbl">你正在看的全部内容</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <div class="wrap">
+    <div class="kicker reveal">What's next</div>
+    <h2 class="reveal">下一站：软路由。</h2>
+    <div class="feature reveal">
+      <div>
+        <h3>先有路，再有车。</h3>
+        <p>域名和服务器已经就位。接下来计划在这台机器上尝试云端路由与 VPN 网关 — RouterOS CHR 已经在候选名单里，家里的软路由则会留在家里，各司其职。</p>
+        <p>账号本身也做了全套防护： root 登录已开启 MFA 双因素验证，账单一有风吹草动就会报警。</p>
+      </div>
+      <div class="orb">🧭</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Henry Li · 本页由 AWS EC2 实时送达</div>
+  <div>
+    <a href="https://lichunh.github.io" target="_blank" rel="noopener">lichunh.github.io</a> ·
+    <a href="https://lichunh.github.io/hello-world.pdf" target="_blank" rel="noopener">Hello World PDF</a> ·
+    henryli.duckdns.org
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
