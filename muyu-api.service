@@ -1,0 +1,20 @@
+[Unit]
+Description=Muyu global merit counter API
+After=network.target
+
+[Service]
+Type=simple
+User=muyu
+Group=muyu
+ExecStart=/usr/bin/python3 /opt/muyu/muyu_api.py
+Environment=MUYU_STATE=/var/lib/muyu
+StateDirectory=muyu
+Restart=always
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
