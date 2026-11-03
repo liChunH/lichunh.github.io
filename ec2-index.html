@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Henry Li — AI 产品前端开发 × 产品经理</title>
-<meta name="description" content="Henry Li 的个人空间站：AI 产品前端开发、兼职产品经理，正在把云计算一节一节补上。这里由 AWS EC2 实时送达。">
+<title>赛博乞讨 · 在线要饭 | 碗已备好，只等大佬</title>
+<meta name="description" content="一位佚名网友的云端小破站。服务器靠抵扣金续命，路过大佬赏口饭吃：USDT · TRON。纯静态页面，不收集任何信息。">
 <style>
   :root{
-    --bg:#050507; --card:#0d0d13; --line:rgba(255,255,255,.09);
-    --txt:#f5f5f7; --dim:#9a9aa3; --blue:#2997ff; --violet:#a259ff; --pink:#ff5e8a; --amber:#ff9f0a; --green:#30d158;
-    --grad:linear-gradient(92deg,#0090ff,#a259ff 38%,#ff5e8a 72%,#ff9f0a);
+    --bg:#070608; --card:#0e0c10; --line:rgba(255,255,255,.09);
+    --txt:#f7f3ec; --dim:#a79f92; --gold:#ffb340; --amber:#ff9f0a; --pink:#ff5e8a; --violet:#a259ff; --blue:#2997ff; --green:#30d158;
+    --grad:linear-gradient(92deg,#ff9f0a,#ff5e8a 42%,#a259ff 78%,#2997ff);
+    --goldgrad:linear-gradient(120deg,#ffe9b0,#ffb340 38%,#ff8a00 62%,#ffd97a);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -17,179 +18,163 @@
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
     background:var(--bg); color:var(--txt); -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-  ::selection{background:var(--violet); color:#fff}
-  a{color:var(--blue); text-decoration:none}
+  ::selection{background:var(--amber); color:#1a1206}
+  a{color:var(--gold); text-decoration:none}
   .wrap{width:min(1080px,92vw); margin:0 auto}
-  section{padding:120px 20px; position:relative}
+  section{padding:115px 20px; position:relative}
+  .glow{position:absolute; border-radius:50%; filter:blur(100px); opacity:.45; pointer-events:none; z-index:0}
+  .g1{width:520px;height:520px; background:#4a2c05; top:-170px; left:-120px; animation:drift 17s ease-in-out infinite alternate}
+  .g2{width:440px;height:440px; background:#3d1545; top:8%; right:-150px; animation:drift 21s ease-in-out infinite alternate-reverse}
+  @keyframes drift{ from{transform:translate(0,0) scale(1)} to{transform:translate(60px,42px) scale(1.12)} }
 
-  /* ambient glows */
-  .glow{position:absolute; border-radius:50%; filter:blur(90px); opacity:.5; pointer-events:none; z-index:0}
-  .g1{width:520px;height:520px; background:#123a6e; top:-160px; left:-120px; animation:drift 16s ease-in-out infinite alternate}
-  .g2{width:460px;height:460px; background:#3d1663; top:6%; right:-160px; animation:drift 20s ease-in-out infinite alternate-reverse}
-  .g3{width:380px;height:380px; background:#571b33; bottom:-140px; left:32%; animation:drift 18s ease-in-out infinite alternate}
-  @keyframes drift{ from{transform:translate(0,0) scale(1)} to{transform:translate(60px,40px) scale(1.12)} }
-
-  /* nav */
   nav{
     position:fixed; inset:0 0 auto 0; height:54px; z-index:60;
     display:flex; align-items:center; justify-content:center;
-    background:rgba(10,10,12,.66); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:rgba(12,10,8,.66); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
     border-bottom:1px solid rgba(255,255,255,.06);
   }
   nav .inner{width:min(1080px,92vw); display:flex; align-items:center; justify-content:space-between}
-  nav .logo{font-weight:700; font-size:15px; color:var(--txt); letter-spacing:.03em}
-  nav .logo em{font-style:normal; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
+  nav .logo{font-weight:800; font-size:15px; color:var(--txt); letter-spacing:.04em}
   nav .links{display:flex; gap:30px}
-  nav .links a{color:#e8e8ed; font-size:12.5px; opacity:.85; transition:.2s}
-  nav .links a:hover{opacity:1; color:#fff}
-  nav .links a.hot{color:#ffb340; opacity:1; font-weight:600}
+  nav .links a{color:#ece5d8; font-size:12.5px; opacity:.85; transition:.2s}
+  nav .links a:hover{opacity:1}
+  nav .links a.hot{color:var(--gold); opacity:1; font-weight:700}
   @media(max-width:680px){ nav .links{gap:16px} nav .links a:nth-child(2), nav .links a:nth-child(4){display:none} }
 
-  /* hero */
   .hero{position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; text-align:center; padding:150px 20px 110px; overflow:hidden}
   #stars{position:absolute; inset:0; z-index:0}
   .hero .content{position:relative; z-index:2; width:min(980px,94vw)}
-  .badge{
-    display:inline-flex; align-items:center; gap:9px; padding:8px 18px; border-radius:980px;
-    border:1px solid rgba(48,209,88,.35); background:rgba(48,209,88,.08);
-    font-size:13px; color:#8ff0b3; letter-spacing:.06em;
-  }
+  .badge{display:inline-flex; align-items:center; gap:9px; padding:8px 18px; border-radius:980px; border:1px solid rgba(48,209,88,.35); background:rgba(48,209,88,.08); font-size:13px; color:#8ff0b3; letter-spacing:.05em}
   .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green); box-shadow:0 0 12px var(--green); animation:pulse 1.8s infinite}
   @keyframes pulse{ 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.35); opacity:.6} }
-  h1{margin-top:34px; font-size:clamp(56px,11vw,124px); font-weight:800; line-height:1.02; letter-spacing:-.02em}
+  .bowl{font-size:clamp(76px,13vw,118px); line-height:1; margin-top:38px; display:inline-block; animation:bob 3.2s ease-in-out infinite; filter:drop-shadow(0 18px 34px rgba(255,159,10,.35))}
+  @keyframes bob{ 0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-13px) rotate(3deg)} }
+  h1{margin-top:16px; font-size:clamp(52px,10.5vw,116px); font-weight:800; line-height:1.04; letter-spacing:-.01em}
   h1 .line{display:block; overflow:hidden}
   h1 .line span{display:inline-block; transform:translateY(110%); animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
-  h1 .line:nth-child(2) span{animation-delay:.14s}
+  h1 .line:nth-child(2) span{animation-delay:.15s}
   @keyframes rise{ to{transform:translateY(0)} }
   h1 .grad{background:var(--grad); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shine 8s linear infinite}
   @keyframes shine{ to{background-position:220% 0} }
-  .roles{margin-top:30px; font-size:clamp(17px,2.6vw,23px); color:var(--dim); line-height:1.65}
-  .roles b{color:var(--txt); font-weight:600}
-  .cta{margin-top:46px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
-  .btn{display:inline-block; padding:14px 32px; border-radius:980px; font-size:16px; transition:transform .25s, box-shadow .25s, background .25s}
-  .btn.primary{background:#0071e3; color:#fff}
-  .btn.primary:hover{background:#0077ed; transform:translateY(-2px); box-shadow:0 14px 34px rgba(0,113,227,.45)}
-  .btn.gold{background:linear-gradient(92deg,#ff9f0a,#ff5e8a); color:#fff; font-weight:600}
-  .btn.gold:hover{transform:translateY(-2px); box-shadow:0 14px 34px rgba(255,94,138,.4)}
-  .btn.ghost{color:var(--blue); border:1px solid rgba(41,151,255,.45)}
-  .btn.ghost:hover{background:rgba(41,151,255,.1); transform:translateY(-2px)}
+  .roles{margin-top:28px; font-size:clamp(16.5px,2.5vw,22px); color:var(--dim); line-height:1.7}
+  .roles b{color:var(--txt)}
+  .cta{margin-top:44px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
+  .btn{display:inline-block; padding:14px 32px; border-radius:980px; font-size:16px; transition:transform .25s, box-shadow .25s, background .25s; cursor:pointer}
+  .btn.gold{background:linear-gradient(92deg,#ff9f0a,#ff5e8a); color:#fff; font-weight:700; border:none; font-family:inherit}
+  .btn.gold:hover{transform:translateY(-2px) scale(1.02); box-shadow:0 16px 38px rgba(255,94,138,.45)}
+  .btn.ghost{color:var(--gold); border:1px solid rgba(255,179,64,.45)}
+  .btn.ghost:hover{background:rgba(255,179,64,.08); transform:translateY(-2px)}
+  .fuelbar{max-width:520px; margin:52px auto 0; text-align:left}
+  .fuelbar .labels{display:flex; justify-content:space-between; font-size:12.5px; color:#8d8577; letter-spacing:.05em; margin-bottom:9px}
+  .fuelbar .bar{height:10px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden}
+  .fuelbar .fill{height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,#ff5e8a,#ff9f0a,#ffd97a); transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+  .fuelbar .note{margin-top:10px; font-size:12.5px; color:#6f695d}
 
-  /* marquee */
-  .marquee{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#08080c; overflow:hidden; padding:18px 0; position:relative; z-index:2}
-  .marquee .track{display:flex; gap:0; width:max-content; animation:scroll 30s linear infinite}
-  .marquee span{font-size:15px; letter-spacing:.34em; color:#55555e; padding:0 28px; white-space:nowrap; font-weight:600}
-  .marquee span i{font-style:normal; color:var(--violet)}
+  .marquee{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#0a0809; overflow:hidden; padding:18px 0; position:relative; z-index:2}
+  .marquee .track{display:flex; width:max-content; animation:scroll 30s linear infinite}
+  .marquee span{font-size:15px; letter-spacing:.32em; color:#5c554a; padding:0 28px; white-space:nowrap; font-weight:600}
+  .marquee span i{font-style:normal; color:var(--gold)}
   @keyframes scroll{ to{transform:translateX(-50%)} }
 
-  .kicker{font-size:13.5px; font-weight:700; color:var(--blue); letter-spacing:.3em; text-transform:uppercase; text-align:center}
-  h2{font-size:clamp(36px,5.8vw,60px); font-weight:800; text-align:center; letter-spacing:-.015em; margin-top:16px; line-height:1.12}
+  .kicker{font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:.3em; text-transform:uppercase; text-align:center}
+  h2{font-size:clamp(34px,5.6vw,58px); font-weight:800; text-align:center; letter-spacing:-.015em; margin-top:16px; line-height:1.14}
   h2 .grad{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .lead{text-align:center; color:var(--dim); font-size:clamp(16px,2vw,19.5px); line-height:1.7; max-width:700px; margin:24px auto 0}
+  .lead{text-align:center; color:var(--dim); font-size:clamp(16px,2vw,19px); line-height:1.75; max-width:700px; margin:24px auto 0}
 
-  /* about */
-  .about-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:22px; margin-top:60px}
-  @media(max-width:860px){ .about-grid{grid-template-columns:1fr} }
-  .panel{
-    background:linear-gradient(180deg,#12121a,#0a0a0f); border:1px solid var(--line); border-radius:24px; padding:38px 34px;
-    position:relative; z-index:1;
-  }
-  .panel h3{font-size:24px; font-weight:700; margin-bottom:16px}
-  .panel p{color:var(--dim); font-size:16px; line-height:1.8}
-  .panel p + p{margin-top:14px}
-  .panel p b{color:var(--txt)}
-  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}
-  .chip{font-size:13px; padding:7px 14px; border-radius:980px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:#d8d8de}
-  .chip.c1{border-color:rgba(41,151,255,.4); color:#8ecbff}
-  .chip.c2{border-color:rgba(162,89,255,.4); color:#d3a6ff}
-  .chip.c3{border-color:rgba(255,159,10,.4); color:#ffcf87}
-  .chip.c4{border-color:rgba(48,209,88,.4); color:#93edb2}
-  .terminal{
-    background:#070708; border:1px solid var(--line); border-radius:24px; padding:26px 26px 30px;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13.5px; line-height:2; color:#b8f5c8;
-    overflow:hidden; position:relative; z-index:1;
-  }
-  .terminal .bar{display:flex; gap:8px; margin-bottom:16px}
-  .terminal .bar i{width:12px;height:12px;border-radius:50%; display:block}
-  .terminal .bar i:nth-child(1){background:#ff5f57}.terminal .bar i:nth-child(2){background:#febc2e}.terminal .bar i:nth-child(3){background:#28c840}
-  .terminal .c{color:#8a8a93}
-  .terminal .w{color:#e8e8ed}
-  .terminal .b{color:#7cc4ff}
-  .cursor{display:inline-block; width:8px; height:16px; background:#b8f5c8; vertical-align:-2px; animation:blink 1s steps(1) infinite}
-  @keyframes blink{ 50%{opacity:0} }
-
-  /* projects */
-  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:60px}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:58px}
   @media(max-width:900px){ .grid{grid-template-columns:1fr} }
-  .card{
-    background:linear-gradient(180deg,#12121a,#0a0a0f); border:1px solid var(--line); border-radius:24px; padding:34px 30px;
-    transform-style:preserve-3d; transition:box-shadow .35s, border-color .35s; will-change:transform; position:relative; z-index:1;
-  }
-  .card:hover{border-color:rgba(255,255,255,.2); box-shadow:0 30px 60px rgba(0,0,0,.55)}
-  .card .icon{font-size:36px; margin-bottom:18px}
+  .card{background:linear-gradient(180deg,#141118,#0a0908); border:1px solid var(--line); border-radius:24px; padding:34px 30px; transform-style:preserve-3d; transition:box-shadow .35s, border-color .35s; position:relative; z-index:1}
+  .card:hover{border-color:rgba(255,179,64,.3); box-shadow:0 30px 60px rgba(0,0,0,.55)}
+  .card .icon{font-size:36px; margin-bottom:16px}
   .card h3{font-size:21px; font-weight:700; margin-bottom:10px}
-  .card p{color:var(--dim); font-size:15px; line-height:1.7}
-  .tag{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.09em; padding:4px 11px; border-radius:980px; margin-bottom:16px; color:#7ee2a8; background:rgba(48,209,88,.12); border:1px solid rgba(48,209,88,.28)}
-  .tag.blue{color:#7cc4ff; background:rgba(41,151,255,.12); border-color:rgba(41,151,255,.28)}
-  .tag.violet{color:#cf9fff; background:rgba(162,89,255,.13); border-color:rgba(162,89,255,.3)}
+  .card p{color:var(--dim); font-size:15px; line-height:1.75}
 
-  /* stats */
-  .band{background:#08080d; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden}
-  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:58px; text-align:center}
-  @media(max-width:860px){ .stats{grid-template-columns:repeat(2,1fr)} }
-  .stat .num{font-size:clamp(40px,5.4vw,58px); font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .stat .lbl{color:var(--dim); font-size:14px; margin-top:9px; line-height:1.6}
+  /* muyu */
+  .muyu-wrap{text-align:center; margin-top:56px; position:relative; z-index:1}
+  .muyu{
+    width:190px; height:190px; margin:0 auto; border-radius:50%; cursor:pointer; user-select:none; -webkit-user-select:none;
+    background:radial-gradient(circle at 34% 30%, #a06a35, #7a4a1f 55%, #54300f);
+    box-shadow:0 24px 50px rgba(0,0,0,.6), inset 0 -14px 26px rgba(0,0,0,.45), inset 0 10px 18px rgba(255,220,170,.25);
+    display:flex; align-items:center; justify-content:center; position:relative; transition:transform .08s;
+  }
+  .muyu::after{content:""; position:absolute; left:16%; right:16%; top:56%; height:9px; border-radius:99px; background:rgba(30,15,2,.65); box-shadow:inset 0 2px 4px rgba(0,0,0,.7)}
+  .muyu .face{font-size:56px; transform:translateY(-16px)}
+  .muyu.hit{animation:hit .18s ease}
+  @keyframes hit{ 30%{transform:scale(.93)} 60%{transform:scale(1.03)} }
+  .merit{margin-top:28px; font-size:19px; color:var(--dim)}
+  .merit b{font-size:30px; color:var(--gold); font-variant-numeric:tabular-nums}
+  .float1{position:absolute; font-weight:800; color:var(--gold); font-size:20px; pointer-events:none; animation:floatup 1s ease-out forwards; text-shadow:0 2px 12px rgba(255,159,10,.5)}
+  @keyframes floatup{ from{opacity:0; transform:translateY(6px) scale(.8)} 20%{opacity:1} to{opacity:0; transform:translateY(-72px) scale(1.15)} }
 
-  /* journey */
-  .timeline{max-width:760px; margin:64px auto 0; position:relative; padding-left:34px}
-  .timeline::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg,var(--blue),var(--violet),var(--pink),var(--amber))}
-  .step{position:relative; padding-bottom:40px}
-  .step:last-child{padding-bottom:0}
-  .step::before{content:""; position:absolute; left:-32px; top:5px; width:16px; height:16px; border-radius:50%; background:var(--bg); border:3px solid var(--blue)}
-  .step:nth-child(2)::before{border-color:var(--violet)}
-  .step:nth-child(3)::before{border-color:var(--pink)}
-  .step:nth-child(4)::before{border-color:var(--amber)}
-  .step:nth-child(5)::before{border-color:var(--green)}
-  .step .time{font-size:12.5px; color:#6e6e73; letter-spacing:.14em; font-weight:600}
-  .step h3{font-size:20px; font-weight:700; margin:7px 0 8px}
-  .step p{color:var(--dim); font-size:15px; line-height:1.7}
+  /* tiers */
+  .tiers{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:56px}
+  @media(max-width:1000px){ .tiers{grid-template-columns:repeat(2,1fr)} .tiers .tier:last-child{grid-column:span 2} }
+  @media(max-width:520px){ .tiers{grid-template-columns:1fr} .tiers .tier:last-child{grid-column:auto} }
+  .tier{background:linear-gradient(180deg,#141118,#0a0908); border:1px solid var(--line); border-radius:22px; padding:28px 20px; text-align:center; cursor:pointer; transition:transform .25s, border-color .25s, box-shadow .25s; position:relative; z-index:1}
+  .tier:hover{transform:translateY(-6px); border-color:rgba(255,179,64,.45); box-shadow:0 24px 44px rgba(0,0,0,.5)}
+  .tier .amt{font-size:33px; font-weight:800; background:var(--goldgrad); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .tier .unit{font-size:13px; color:#8d8577; margin-top:2px; letter-spacing:.12em}
+  .tier h3{font-size:17px; margin-top:16px}
+  .tier p{color:var(--dim); font-size:13.5px; line-height:1.65; margin-top:8px}
+  .tier .go{margin-top:16px; font-size:13px; color:var(--gold); font-weight:600}
+  .tier.king{border-color:rgba(255,179,64,.55); background:linear-gradient(180deg,#241a08,#120d06)}
 
   /* sponsor */
-  .sponsor-card{
-    max-width:780px; margin:56px auto 0; border-radius:26px; padding:2px; position:relative; z-index:1;
-    background:linear-gradient(120deg,#ff9f0a,#ff5e8a,#a259ff,#0090ff,#ff9f0a); background-size:300% 300%;
-    animation:borderflow 9s ease infinite;
-  }
+  .sponsor-card{max-width:820px; margin:54px auto 0; border-radius:26px; padding:2px; position:relative; z-index:1; background:linear-gradient(120deg,#ff9f0a,#ff5e8a,#a259ff,#2997ff,#ff9f0a); background-size:300% 300%; animation:borderflow 9s ease infinite}
   @keyframes borderflow{ 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-  .sponsor-inner{background:#0b0b10; border-radius:24px; padding:44px 38px; text-align:center}
-  .sponsor-inner .coin{font-size:44px}
-  .sponsor-inner h3{font-size:clamp(26px,4vw,34px); font-weight:800; margin-top:14px}
-  .sponsor-inner p{color:var(--dim); font-size:16px; line-height:1.75; margin-top:14px}
-  .addrbox{margin:30px auto 0; background:#070708; border:1px solid var(--line); border-radius:16px; padding:20px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center; max-width:640px}
-  .addr{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14.5px; line-height:1.6; word-break:break-all; color:#ffe1a8; flex:1; min-width:280px; text-align:left; cursor:pointer}
+  .sponsor-inner{background:#0c0a0d; border-radius:24px; padding:46px 38px; text-align:center}
+  .sponsor-inner h3{font-size:clamp(26px,4vw,34px); font-weight:800}
+  .sponsor-inner>p{color:var(--dim); font-size:16px; line-height:1.8; margin-top:14px}
+  .qrrow{display:flex; gap:26px; align-items:stretch; justify-content:center; flex-wrap:wrap; margin-top:34px}
+  .qrbox{background:#fff; border-radius:18px; padding:14px; width:196px; display:flex; flex-direction:column; align-items:center; gap:10px}
+  .qrbox .cap{color:#444; font-size:12px; letter-spacing:.06em}
+  .qrbox svg{width:160px; height:160px; display:block}
+  .addrcol{flex:1; min-width:290px; max-width:470px; display:flex; flex-direction:column; justify-content:center; text-align:left}
+  .addrbox{background:#070608; border:1px solid var(--line); border-radius:16px; padding:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+  .addr{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14.5px; line-height:1.6; word-break:break-all; color:#ffe1a8; flex:1; min-width:250px; cursor:pointer}
   .copybtn{padding:11px 24px; border-radius:980px; border:none; cursor:pointer; background:linear-gradient(92deg,#ff9f0a,#ff5e8a); color:#fff; font-size:15px; font-weight:600; font-family:inherit; white-space:nowrap; transition:transform .25s, box-shadow .25s}
   .copybtn:hover{transform:translateY(-1px); box-shadow:0 10px 26px rgba(255,94,138,.35)}
-  .chainnote{max-width:640px; margin:20px auto 0; color:#6e6e73; font-size:13.5px; line-height:1.75}
-  .chainnote b{color:#a1a1a6}
+  .checks{margin-top:22px; display:grid; gap:10px}
+  .checks li{list-style:none; font-size:14px; color:#b6ad9d; line-height:1.65; padding-left:26px; position:relative}
+  .checks li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:800}
+  .checks li b{color:var(--txt)}
+  .checks li code{font-family:ui-monospace,Menlo,Consolas,monospace; color:#ffe1a8; font-size:13px}
 
-  footer{padding:60px 20px 74px; text-align:center; color:#6e6e73; font-size:13px; line-height:2.1; border-top:1px solid var(--line); background:#07070a}
-  footer a{color:#a1a1a6} footer a:hover{color:#fff}
+  /* board + faq */
+  .board{max-width:720px; margin:54px auto 0; background:linear-gradient(180deg,#141118,#0a0908); border:1px dashed rgba(255,179,64,.4); border-radius:24px; padding:40px 34px; text-align:center; position:relative; z-index:1}
+  .board .crown{font-size:40px}
+  .board h3{font-size:23px; margin-top:12px}
+  .board p{color:var(--dim); font-size:15px; line-height:1.75; margin-top:10px}
+  .faq{max-width:780px; margin:54px auto 0; display:grid; gap:14px; position:relative; z-index:1}
+  .qa{background:#0e0c10; border:1px solid var(--line); border-radius:18px; padding:24px 26px; text-align:left}
+  .qa h3{font-size:17px; margin-bottom:8px}
+  .qa h3::before{content:"Q "; color:var(--gold); font-weight:800}
+  .qa p{color:var(--dim); font-size:15px; line-height:1.75}
+
+  footer{padding:58px 20px 72px; text-align:center; color:#6f695d; font-size:13px; line-height:2.1; border-top:1px solid var(--line); background:#060507}
+  footer .big{font-size:22px}
 
   .reveal{opacity:0; transform:translateY(36px); transition:opacity .9s ease, transform .9s ease}
   .reveal.in{opacity:1; transform:none}
+  .toast{
+    position:fixed; left:50%; bottom:34px; transform:translate(-50%, 20px); z-index:80;
+    background:#1c1710; color:#ffe9c4; border:1px solid rgba(255,179,64,.5); padding:14px 26px; border-radius:980px;
+    font-size:15px; opacity:0; pointer-events:none; transition:.35s; box-shadow:0 18px 44px rgba(0,0,0,.55); max-width:92vw; text-align:center;
+  }
+  .toast.show{opacity:1; transform:translate(-50%, 0)}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="inner">
-    <a class="logo" href="#">HENRY<em>LI</em></a>
+    <a class="logo" href="#">🥣 赛博乞讨</a>
     <div class="links">
-      <a href="#about">关于</a>
-      <a href="#projects">项目</a>
-      <a href="#journey">建站手记</a>
-      <a href="#numbers">数据</a>
-      <a href="#sponsor" class="hot">♥ 赞助</a>
-      <a href="https://lichunh.github.io" target="_blank" rel="noopener">简历站</a>
+      <a href="#why">为何要饭</a>
+      <a href="#muyu">电子木鱼</a>
+      <a href="#menu">投喂菜单</a>
+      <a href="#faq">答疑</a>
+      <a href="#sponsor" class="hot">♥ 立即投喂</a>
     </div>
   </div>
 </nav>
@@ -198,227 +183,272 @@
   <canvas id="stars"></canvas>
   <div class="glow g1"></div><div class="glow g2"></div>
   <div class="content">
-    <div class="badge"><span class="dot"></span>服务器在线 · AWS EC2 · HTTPS 已点亮</div>
+    <div class="badge"><span class="dot"></span>在线要饭中 · 服务器还没欠费 · 碗已擦亮</div>
+    <div><span class="bowl">🥣</span></div>
     <h1>
-      <span class="line"><span>你好，我是</span></span>
-      <span class="line"><span class="grad">Henry Li</span></span>
+      <span class="line"><span>赛博乞讨</span></span>
+      <span class="line"><span class="grad">在线要饭</span></span>
     </h1>
-    <p class="roles"><b>AI 产品前端开发</b> · <b>兼职产品经理</b> · 云计算进修中<br>白天把大模型做成好用的产品，深夜把服务器折腾成自己的游乐场。</p>
+    <p class="roles">服务器在云端，碗在人间。<br>本人<b>佚名网友一枚</b>，守着一台租来的小服务器过日子 —<br>路过的大佬行行好，<b>随手投喂，功德 +1</b>。</p>
     <div class="cta">
-      <a class="btn primary" href="#projects">看看我在折腾什么</a>
-      <a class="btn gold" href="#sponsor">♥ 赞助一杯咖啡</a>
-      <a class="btn ghost" href="https://lichunh.github.io" target="_blank" rel="noopener">简历站 →</a>
+      <a class="btn gold" href="#sponsor">♥ 立即投喂</a>
+      <a class="btn ghost" href="#muyu">先敲敲木鱼</a>
+    </div>
+    <div class="fuelbar">
+      <div class="labels"><span>⛽ 服务器续命油量</span><span>抵扣金燃烧中…</span></div>
+      <div class="bar"><div class="fill" id="fuelFill"></div></div>
+      <div class="note">本站目前靠云厂商送的抵扣金苟活，油量见底之日，就是大佬们出手之时。</div>
     </div>
   </div>
 </header>
 
 <div class="marquee" aria-hidden="true">
   <div class="track" id="marqueeTrack">
-    <span>FRONT-END <i>✦</i> AI PRODUCTS <i>✦</i> PRODUCT MANAGER <i>✦</i> AWS CLOUD <i>✦</i> NGINX <i>✦</i> HTTPS <i>✦</i> DNS <i>✦</i> STILL LEARNING <i>✦</i></span>
+    <span>好人一生平安 <i>✦</i> 投喂大佬 功德无量 <i>✦</i> USDT · TRON <i>✦</i> 不强求 不道德绑架 <i>✦</i> 看完就走 也很感谢 <i>✦</i></span>
   </div>
 </div>
 
-<section id="about">
-  <div class="glow g3"></div>
+<section id="why">
   <div class="wrap">
-    <div class="kicker reveal">About</div>
-    <h2 class="reveal">写代码的人，<br>也在学着<span class="grad">管服务器</span>。</h2>
-    <div class="about-grid">
-      <div class="panel reveal">
-        <h3>白天做产品，晚上折腾云。</h3>
-        <p>我的本职是 <b>AI 产品的前端开发</b>：把大模型的能力，打磨成用户真正愿意天天打开的界面。同时<b>兼职产品经理</b>，管需求、画原型、盯落地 — 既站在代码这一侧，也站在用户那一侧。</p>
-        <p>最近我在系统补一门课：<b>服务器与云计算</b>。注册云账号、安全防护、域名解析、HTTPS 证书、部署上线 — 你正在看的这个网站，就是我从零亲手搭出来的实操作业，每一块砖都有名有姓。</p>
-        <div class="chips">
-          <span class="chip c1">前端开发</span>
-          <span class="chip c2">产品经理</span>
-          <span class="chip c3">AI 产品</span>
-          <span class="chip c4">云计算学习中</span>
-          <span class="chip">独立建站</span>
-        </div>
-      </div>
-      <div class="terminal reveal" aria-label="服务器终端示意">
-        <div class="bar"><i></i><i></i><i></i></div>
-        <div><span class="c"># 这台机器的自我介绍</span></div>
-        <div><span class="b">$</span> <span class="w">whoami</span></div>
-        <div>henryli-web · EC2 t3.micro · Ohio</div>
-        <div><span class="b">$</span> <span class="w">uptime</span></div>
-        <div>24/7 · 为这一页全天待命</div>
-        <div><span class="b">$</span> <span class="w">curl -I https://henryli.duckdns.org</span></div>
-        <div>HTTP/2 200 · cert: Let's Encrypt ✓</div>
-        <div><span class="b">$</span> <span class="w">echo $STATUS</span></div>
-        <div>built in one day, still improving <span class="cursor"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" style="padding-top:40px">
-  <div class="wrap">
-    <div class="kicker reveal">Projects</div>
-    <h2 class="reveal">手上正在转的<span class="grad">三个齿轮</span>。</h2>
-    <p class="lead reveal">一个网站背后是一整套功夫 — 这三块，就是我最近练完的全部招式。</p>
+    <div class="kicker reveal">Why</div>
+    <h2 class="reveal">为什么要饭？<br><span class="grad">因为梦想也要交房租。</span></h2>
     <div class="grid">
       <div class="card reveal tilt">
-        <span class="tag">● 运行中</span>
         <div class="icon">☁️</div>
-        <h3>云服务器 · EC2</h3>
-        <p>一台位于美国俄亥俄的 AWS 云主机，装着 nginx 守着这个页面。弹性 IP 固定门牌，关机重启也不迷路。</p>
+        <h3>服务器要吃租金</h3>
+        <p>这台小服务器 24 小时不敢睡觉地守着这一页，每月雷打不动要交十几美元。新人抵扣金总有烧完的一天 — 烧完那天，它就得靠各位大佬的接济续命了。</p>
       </div>
       <div class="card reveal tilt">
-        <span class="tag blue">专属域名</span>
-        <div class="icon">🌐</div>
-        <h3>henryli.duckdns.org</h3>
-        <p>免费领到的专属域名，精确指向这台服务器。再配上 Let's Encrypt 证书与自动续期 — 小锁头亮起，安全感拉满。</p>
+        <div class="icon">🎈</div>
+        <h3>能白嫖的都白嫖了</h3>
+        <p>域名是免费领的，HTTPS 证书是免费签的，能省的我都省到了极致。唯独服务器的租金，是这个世界上少数白嫖不到的东西之一。</p>
       </div>
       <div class="card reveal tilt">
-        <span class="tag violet">GitHub Pages</span>
-        <div class="icon">📄</div>
-        <h3>简历站</h3>
-        <p>另一条战线上的个人简历站：<a href="https://lichunh.github.io" target="_blank" rel="noopener">lichunh.github.io</a>。真简历正在赶来的路上，敬请期待。</p>
+        <div class="icon">🌱</div>
+        <h3>万一呢？</h3>
+        <p>万一哪位大佬心情好，赏的钱够它多活一个月呢？互联网的精神不就是这样 — 一群陌生人，莫名其妙地互相成全。这个站存在本身，就是一次小小的行为艺术。</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="band" id="numbers">
+<section id="muyu" style="padding-top:30px">
   <div class="wrap">
-    <div class="kicker reveal">By the numbers</div>
-    <h2 class="reveal">小成本，<span class="grad">大折腾</span>。</h2>
-    <div class="stats">
-      <div class="stat reveal"><div class="num" data-count="200" data-prefix="$">$0</div><div class="lbl">AWS 抵扣金<br>全程预算</div></div>
-      <div class="stat reveal"><div class="num" data-count="0" data-prefix="$">$0</div><div class="lbl">银行卡<br>实际扣款</div></div>
-      <div class="stat reveal"><div class="num" data-count="1" data-suffix=" 天">0</div><div class="lbl">从注册账号<br>到网站上线</div></div>
-      <div class="stat reveal"><div class="num" data-count="90" data-suffix=" 天">0</div><div class="lbl">证书有效期<br>到期自动续</div></div>
+    <div class="kicker reveal">Cyber merit</div>
+    <h2 class="reveal">没钱也没关系，<br><span class="grad">敲敲木鱼也是情。</span></h2>
+    <p class="lead reveal">投喂是缘分，敲木鱼是心意。点一下，功德 +1 — 佛祖和服务器，都记在心里了。</p>
+    <div class="muyu-wrap reveal" id="muyuWrap">
+      <div class="muyu" id="muyuBtn" role="button" aria-label="敲木鱼"><span class="face">🙏</span></div>
+      <div class="merit">已积攒功德 <b id="meritNum">0</b> · 敲得越多，服务器越感动</div>
     </div>
   </div>
 </section>
 
-<section id="journey">
+<section id="menu" style="padding-top:30px">
   <div class="wrap">
-    <div class="kicker reveal">Field notes</div>
-    <h2 class="reveal">一天之内，<span class="grad">从零到上线</span>。</h2>
-    <p class="lead reveal">2026 年 11 月 3 日，这个网站的全部诞生过程 — 记录下来，纪念一下这股折腾劲儿。</p>
-    <div class="timeline">
-      <div class="step reveal">
-        <div class="time">MORNING</div>
-        <h3>账号与第一道锁</h3>
-        <p>注册 AWS 免费账号，拿下 $200 抵扣金；做的第一件事不是开服务器，而是给 root 账号开启 MFA 双因素验证、设好 $0.01 的零花钱预算警报 — 先学会不被扣钱，再谈花钱。</p>
+    <div class="kicker reveal">Menu</div>
+    <h2 class="reveal">投喂菜单，<span class="grad">丰俭由人</span>。</h2>
+    <p class="lead reveal">点任意一档，收款地址就会自动复制好 — 到钱包里粘贴时，记得核对地址首尾（防骗指南在下面）。</p>
+    <div class="tiers">
+      <div class="tier reveal" data-copy="1 USDT">
+        <div class="amt">1</div><div class="unit">USDT</div>
+        <h3>路过的善意</h3>
+        <p>功德 +1，好运一天。蚊子腿也是肉，碗先谢为敬。</p>
+        <div class="go">点我复制地址 →</div>
       </div>
-      <div class="step reveal">
-        <div class="time">MIDDAY</div>
-        <h3>简历站先行</h3>
-        <p>在 GitHub Pages 上把简历站的地基打好：lichunh.github.io 上线，第一份 PDF 是经典的 Hello World — 程序员的浪漫，先打个招呼再说。</p>
+      <div class="tier reveal" data-copy="5 USDT">
+        <div class="amt">5</div><div class="unit">USDT</div>
+        <h3>小小投喂</h3>
+        <p>福报 +5。够服务器多喘一天气，大佬大气。</p>
+        <div class="go">点我复制地址 →</div>
       </div>
-      <div class="step reveal">
-        <div class="time">AFTERNOON</div>
-        <h3>领地与门牌</h3>
-        <p>免费领下专属域名 henryli.duckdns.org；傍晚在 AWS 开出真正的云服务器，装好 nginx，把这一页从 GitHub 仓库部署上线，域名正式指过来。</p>
+      <div class="tier reveal" data-copy="10 USDT">
+        <div class="amt">10</div><div class="unit">USDT</div>
+        <h3>大佬本佬</h3>
+        <p>服务器今晚为您亮灯，日志里将留下您无名的传说。</p>
+        <div class="go">点我复制地址 →</div>
       </div>
-      <div class="step reveal">
-        <div class="time">EVENING</div>
-        <h3>点亮小锁头</h3>
-        <p>给网站装上 Let's Encrypt 免费证书，http 自动跳转 https，再把自动续期打开 — 从此这把锁自己管自己，不用操心。</p>
+      <div class="tier reveal" data-copy="66 USDT">
+        <div class="amt">66</div><div class="unit">USDT</div>
+        <h3>六六大顺</h3>
+        <p>碗口直接镶金边。您这一把，够它活小半年。</p>
+        <div class="go">点我复制地址 →</div>
       </div>
-      <div class="step reveal">
-        <div class="time">NOW</div>
-        <h3>你在这里</h3>
-        <p>你正在读的这一页，就是上面全部故事的成品。它还在长大 — 下一个版本见。</p>
+      <div class="tier king reveal" data-copy="188 USDT">
+        <div class="amt">188</div><div class="unit">USDT</div>
+        <h3>一路发 · 包养局</h3>
+        <p>这不叫投喂，这叫包养。请收下我隔空的一个响头。</p>
+        <div class="go">点我复制地址 →</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="sponsor" style="padding-top:40px">
+<section id="sponsor" style="padding-top:30px">
   <div class="wrap">
     <div class="kicker reveal" style="color:#ffb340">Sponsor</div>
-    <h2 class="reveal">觉得有意思？<br><span class="grad">请我喝杯咖啡。</span></h2>
-    <p class="lead reveal">这个小站靠 AWS 抵扣金活着，抵扣金总有烧完的一天。如果你想为它的续命出一份力 — 或者单纯觉得这股折腾劲儿值得鼓励 — 欢迎用 USDT 打赏，走 TRON 网络，手续费低到几乎可以忽略。</p>
+    <h2 class="reveal">赞助通道<br><span class="grad">就这一个，别无分号</span></h2>
     <div class="sponsor-card reveal">
       <div class="sponsor-inner">
-        <div class="coin">💛</div>
-        <h3>赞助通道</h3>
-        <p>点击地址或按钮即可复制。金额随意，心意无价 — 每一份都会变成这台小服务器继续在线的时长。</p>
-        <div class="addrbox">
-          <span class="addr" id="walletAddr" title="点击复制">TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt</span>
-          <button class="copybtn" id="copyBtn" type="button">复制地址</button>
+        <h3>💛 USDT · TRON（TRC20）</h3>
+        <p>扫码或复制地址，在您的钱包里完成转账即可。<br>钱包地址<b style="color:#f7f3ec">只能收款、不能转出</b>，公开它没有任何被盗风险。</p>
+        <div class="qrrow">
+          <div class="qrbox">
+            <?xml version='1.0' encoding='UTF-8'?>
+<svg width="160" height="160" width="33mm" height="33mm" version="1.1" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM10,2H11V3H10zM11,2H12V3H11zM12,2H13V3H12zM14,2H15V3H14zM15,2H16V3H15zM16,2H17V3H16zM17,2H18V3H17zM19,2H20V3H19zM20,2H21V3H20zM21,2H22V3H21zM22,2H23V3H22zM24,2H25V3H24zM25,2H26V3H25zM26,2H27V3H26zM27,2H28V3H27zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM2,3H3V4H2zM8,3H9V4H8zM10,3H11V4H10zM11,3H12V4H11zM14,3H15V4H14zM15,3H16V4H15zM18,3H19V4H18zM24,3H25V4H24zM30,3H31V4H30zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM12,4H13V5H12zM18,4H19V5H18zM20,4H21V5H20zM22,4H23V5H22zM24,4H25V5H24zM26,4H27V5H26zM27,4H28V5H27zM28,4H29V5H28zM30,4H31V5H30zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM11,5H12V6H11zM12,5H13V6H12zM13,5H14V6H13zM14,5H15V6H14zM16,5H17V6H16zM17,5H18V6H17zM22,5H23V6H22zM24,5H25V6H24zM26,5H27V6H26zM27,5H28V6H27zM28,5H29V6H28zM30,5H31V6H30zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM11,6H12V7H11zM16,6H17V7H16zM18,6H19V7H18zM20,6H21V7H20zM21,6H22V7H21zM24,6H25V7H24zM26,6H27V7H26zM27,6H28V7H27zM28,6H29V7H28zM30,6H31V7H30zM2,7H3V8H2zM8,7H9V8H8zM13,7H14V8H13zM14,7H15V8H14zM15,7H16V8H15zM17,7H18V8H17zM18,7H19V8H18zM21,7H22V8H21zM22,7H23V8H22zM24,7H25V8H24zM30,7H31V8H30zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM25,8H26V9H25zM26,8H27V9H26zM27,8H28V9H27zM28,8H29V9H28zM29,8H30V9H29zM30,8H31V9H30zM10,9H11V10H10zM13,9H14V10H13zM14,9H15V10H14zM17,9H18V10H17zM18,9H19V10H18zM19,9H20V10H19zM20,9H21V10H20zM22,9H23V10H22zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM7,10H8V11H7zM8,10H9V11H8zM9,10H10V11H9zM13,10H14V11H13zM15,10H16V11H15zM17,10H18V11H17zM18,10H19V11H18zM19,10H20V11H19zM20,10H21V11H20zM21,10H22V11H21zM22,10H23V11H22zM24,10H25V11H24zM27,10H28V11H27zM29,10H30V11H29zM30,10H31V11H30zM4,11H5V12H4zM6,11H7V12H6zM7,11H8V12H7zM10,11H11V12H10zM11,11H12V12H11zM13,11H14V12H13zM15,11H16V12H15zM16,11H17V12H16zM17,11H18V12H17zM21,11H22V12H21zM25,11H26V12H25zM26,11H27V12H26zM27,11H28V12H27zM29,11H30V12H29zM30,11H31V12H30zM3,12H4V13H3zM8,12H9V13H8zM9,12H10V13H9zM11,12H12V13H11zM13,12H14V13H13zM15,12H16V13H15zM20,12H21V13H20zM23,12H24V13H23zM26,12H27V13H26zM29,12H30V13H29zM2,13H3V14H2zM3,13H4V14H3zM4,13H5V14H4zM5,13H6V14H5zM6,13H7V14H6zM9,13H10V14H9zM11,13H12V14H11zM12,13H13V14H12zM14,13H15V14H14zM21,13H22V14H21zM24,13H25V14H24zM29,13H30V14H29zM30,13H31V14H30zM2,14H3V15H2zM3,14H4V15H3zM5,14H6V15H5zM7,14H8V15H7zM8,14H9V15H8zM9,14H10V15H9zM11,14H12V15H11zM12,14H13V15H12zM14,14H15V15H14zM16,14H17V15H16zM17,14H18V15H17zM18,14H19V15H18zM19,14H20V15H19zM22,14H23V15H22zM28,14H29V15H28zM3,15H4V16H3zM4,15H5V16H4zM5,15H6V16H5zM6,15H7V16H6zM10,15H11V16H10zM11,15H12V16H11zM12,15H13V16H12zM16,15H17V16H16zM17,15H18V16H17zM18,15H19V16H18zM20,15H21V16H20zM21,15H22V16H21zM22,15H23V16H22zM23,15H24V16H23zM27,15H28V16H27zM30,15H31V16H30zM3,16H4V17H3zM7,16H8V17H7zM8,16H9V17H8zM9,16H10V17H9zM10,16H11V17H10zM11,16H12V17H11zM13,16H14V17H13zM15,16H16V17H15zM18,16H19V17H18zM21,16H22V17H21zM22,16H23V17H22zM23,16H24V17H23zM24,16H25V17H24zM26,16H27V17H26zM27,16H28V17H27zM28,16H29V17H28zM29,16H30V17H29zM30,16H31V17H30zM3,17H4V18H3zM7,17H8V18H7zM10,17H11V18H10zM11,17H12V18H11zM12,17H13V18H12zM14,17H15V18H14zM16,17H17V18H16zM18,17H19V18H18zM21,17H22V18H21zM22,17H23V18H22zM24,17H25V18H24zM27,17H28V18H27zM30,17H31V18H30zM4,18H5V19H4zM5,18H6V19H5zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM10,18H11V19H10zM11,18H12V19H11zM12,18H13V19H12zM14,18H15V19H14zM16,18H17V19H16zM17,18H18V19H17zM20,18H21V19H20zM25,18H26V19H25zM26,18H27V19H26zM27,18H28V19H27zM28,18H29V19H28zM5,19H6V20H5zM7,19H8V20H7zM10,19H11V20H10zM13,19H14V20H13zM14,19H15V20H14zM16,19H17V20H16zM19,19H20V20H19zM21,19H22V20H21zM22,19H23V20H22zM23,19H24V20H23zM25,19H26V20H25zM27,19H28V20H27zM29,19H30V20H29zM30,19H31V20H30zM2,20H3V21H2zM4,20H5V21H4zM7,20H8V21H7zM8,20H9V21H8zM10,20H11V21H10zM13,20H14V21H13zM15,20H16V21H15zM16,20H17V21H16zM17,20H18V21H17zM18,20H19V21H18zM19,20H20V21H19zM20,20H21V21H20zM23,20H24V21H23zM24,20H25V21H24zM25,20H26V21H25zM27,20H28V21H27zM5,21H6V22H5zM12,21H13V22H12zM13,21H14V22H13zM14,21H15V22H14zM15,21H16V22H15zM16,21H17V22H16zM17,21H18V22H17zM19,21H20V22H19zM21,21H22V22H21zM28,21H29V22H28zM3,22H4V23H3zM6,22H7V23H6zM8,22H9V23H8zM9,22H10V23H9zM11,22H12V23H11zM12,22H13V23H12zM15,22H16V23H15zM16,22H17V23H16zM18,22H19V23H18zM19,22H20V23H19zM20,22H21V23H20zM21,22H22V23H21zM22,22H23V23H22zM23,22H24V23H23zM24,22H25V23H24zM25,22H26V23H25zM26,22H27V23H26zM28,22H29V23H28zM29,22H30V23H29zM30,22H31V23H30zM10,23H11V24H10zM11,23H12V24H11zM12,23H13V24H12zM17,23H18V24H17zM18,23H19V24H18zM19,23H20V24H19zM20,23H21V24H20zM21,23H22V24H21zM22,23H23V24H22zM26,23H27V24H26zM28,23H29V24H28zM2,24H3V25H2zM3,24H4V25H3zM4,24H5V25H4zM5,24H6V25H5zM6,24H7V25H6zM7,24H8V25H7zM8,24H9V25H8zM10,24H11V25H10zM11,24H12V25H11zM13,24H14V25H13zM16,24H17V25H16zM22,24H23V25H22zM24,24H25V25H24zM26,24H27V25H26zM28,24H29V25H28zM29,24H30V25H29zM2,25H3V26H2zM8,25H9V26H8zM10,25H11V26H10zM15,25H16V26H15zM16,25H17V26H16zM22,25H23V26H22zM26,25H27V26H26zM27,25H28V26H27zM2,26H3V27H2zM4,26H5V27H4zM5,26H6V27H5zM6,26H7V27H6zM8,26H9V27H8zM11,26H12V27H11zM12,26H13V27H12zM17,26H18V27H17zM22,26H23V27H22zM23,26H24V27H23zM24,26H25V27H24zM25,26H26V27H25zM26,26H27V27H26zM27,26H28V27H27zM28,26H29V27H28zM29,26H30V27H29zM2,27H3V28H2zM4,27H5V28H4zM5,27H6V28H5zM6,27H7V28H6zM8,27H9V28H8zM10,27H11V28H10zM11,27H12V28H11zM13,27H14V28H13zM17,27H18V28H17zM18,27H19V28H18zM20,27H21V28H20zM23,27H24V28H23zM26,27H27V28H26zM27,27H28V28H27zM28,27H29V28H28zM30,27H31V28H30zM2,28H3V29H2zM4,28H5V29H4zM5,28H6V29H5zM6,28H7V29H6zM8,28H9V29H8zM10,28H11V29H10zM11,28H12V29H11zM14,28H15V29H14zM15,28H16V29H15zM16,28H17V29H16zM22,28H23V29H22zM28,28H29V29H28zM30,28H31V29H30zM2,29H3V30H2zM8,29H9V30H8zM12,29H13V30H12zM13,29H14V30H13zM14,29H15V30H14zM15,29H16V30H15zM20,29H21V30H20zM23,29H24V30H23zM27,29H28V30H27zM29,29H30V30H29zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM5,30H6V31H5zM6,30H7V31H6zM7,30H8V31H7zM8,30H9V31H8zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM15,30H16V31H15zM16,30H17V31H16zM18,30H19V31H18zM19,30H20V31H19zM20,30H21V31H20zM21,30H22V31H21zM22,30H23V31H22zM23,30H24V31H23zM24,30H25V31H24zM28,30H29V31H28zM29,30H30V31H29z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg>
+            <div class="cap">扫码转账 · 防复制篡改</div>
+          </div>
+          <div class="addrcol">
+            <div class="addrbox">
+              <span class="addr" id="walletAddr" title="点击复制">TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt</span>
+              <button class="copybtn" id="copyBtn" type="button">复制地址</button>
+            </div>
+            <ul class="checks">
+              <li><b>转账前三查：</b>开头 <code>TSef</code>、结尾 <code>SdCNt</code>、总长 <b>34 位</b> — 防剪贴板木马篡改地址，这是币圈最常见的偷钱手法。</li>
+              <li><b>只认本页地址：</b>我从不通过私聊、邮件、评论区向任何人索要转账；别处看到的“站长地址”一律是冒牌货。</li>
+              <li><b>只收 TRON 网络 USDT：</b>转错网络的资产会永久丢失，我在链下无能为力，神仙难救。</li>
+              <li><b>小额随意，大额三思：</b>链上转账不可撤销，先小额试水是最稳的姿势。</li>
+            </ul>
+          </div>
         </div>
-        <p class="chainnote">币种与网络：<b>USDT · TRON（TRC20）</b>。请只向这个地址发送 TRON 网络的资产 — 发送其他网络的资产将永远丢失，务必核对网络。这个地址只能收款、不能转出你的任何资产，公开它不会带来资金风险。</p>
+      </div>
+    </div>
+
+    <div class="board reveal">
+      <div class="crown">👑</div>
+      <h3>功德榜 · 虚位以待</h3>
+      <p>本站尚未收到第一笔投喂。榜一大佬的位置，正空着 — 会是路过的你吗？<br>（放心：上榜也匿名，本站不收集、不公布任何人的信息。）</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:30px">
+  <div class="wrap">
+    <div class="kicker reveal">FAQ</div>
+    <h2 class="reveal">要饭也要<span class="grad">明明白白</span>。</h2>
+    <div class="faq">
+      <div class="qa reveal">
+        <h3>钱到底去哪儿了？</h3>
+        <p>全部喂给这台服务器交租金，让它能一直在线陪大家玩。它就是个无情的吞金兽，除此之外别无他用 — 本站不卖课、不拉群、不承诺任何回报，纯属图一乐。</p>
+      </div>
+      <div class="qa reveal">
+        <h3>地址公开挂在网上，安全吗？</h3>
+        <p>安全。收款地址就像银行卡的“只进不出”公开账号：任何人都能往里打钱，但没人能凭它把钱转走 — 能转钱的私钥从不联网、不出现在任何页面里。真正要防的是骗子冒充我另给地址，所以请只认本页这一个。</p>
+      </div>
+      <div class="qa reveal">
+        <h3>转错了能退吗？</h3>
+        <p>不能，区块链转账是泼出去的水。所以菜单才反复念叨：核对首尾、先小额。真转错了，我在链下也捞不回来 — 这题神仙来了也摇头。</p>
+      </div>
+      <div class="qa reveal">
+        <h3>这个网站会收集我的信息吗？</h3>
+        <p>不会。它就是一个纯静态的单页：没有账号、没有表单、没有统计代码、没有 Cookie。你来了，看一眼，敲敲木鱼，走了 — 不留痕迹，我也不知道你是谁。这年头，这么干净的网站不多了。</p>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div>© 2026 Henry Li · 本页由 AWS EC2 跨越半个地球为你送达</div>
-  <div>
-    <a href="https://henryli.duckdns.org">henryli.duckdns.org</a> ·
-    <a href="https://lichunh.github.io" target="_blank" rel="noopener">lichunh.github.io</a> ·
-    <a href="https://lichunh.github.io/hello-world.pdf" target="_blank" rel="noopener">第一份 Hello World PDF</a>
-  </div>
+  <div class="big">🥣</div>
+  <div>© 2026 一位佚名网友 · 服务器在云端，碗在人间</div>
+  <div>本站为纯静态页面：无后台 · 无数据库 · 无追踪 — 黑客来了也只能敲敲木鱼</div>
 </footer>
 
+<div class="toast" id="toast"></div>
+
 <script>
-  // ---- reveal on scroll ----
+  // reveal on scroll
   const io = new IntersectionObserver(es => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ---- count-up stats ----
-  const cio = new IntersectionObserver(es => {
-    es.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target, target = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
-      const t0 = performance.now(), dur = 1400;
-      (function tick(t){
-        const p = Math.min((t - t0) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = pre + Math.round(target * ease) + suf;
-        if (p < 1) requestAnimationFrame(tick);
-      })(t0);
-      cio.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.stat .num').forEach(el => cio.observe(el));
+  // fuel bar
+  setTimeout(() => { document.getElementById('fuelFill').style.width = '62%'; }, 500);
 
-  // ---- marquee: duplicate content for seamless loop ----
+  // marquee duplicate
   const track = document.getElementById('marqueeTrack');
   track.innerHTML += track.innerHTML;
 
-  // ---- 3D tilt cards ----
+  // tilt cards
   if (matchMedia('(hover:hover)').matches) {
     document.querySelectorAll('.tilt').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-4px)`;
+        card.style.transform = `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateY(-4px)`;
       });
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
   }
 
-  // ---- copy wallet address ----
-  async function copyAddr(btn){
-    const addr = document.getElementById('walletAddr').textContent.trim();
-    try { await navigator.clipboard.writeText(addr); btn.textContent = '已复制 ✓'; }
-    catch (e) { btn.textContent = '请长按地址复制'; }
-    setTimeout(() => { btn.textContent = '复制地址'; }, 2200);
-  }
-  const copyBtn = document.getElementById('copyBtn');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => copyAddr(copyBtn));
-    document.getElementById('walletAddr').addEventListener('click', () => copyAddr(copyBtn));
+  // toast
+  const toast = document.getElementById('toast'); let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg; toast.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
   }
 
-  // ---- starfield canvas ----
+  // copy address
+  const ADDR = 'TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt';
+  async function copyAddr(prefix){
+    try { await navigator.clipboard.writeText(ADDR); }
+    catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = ADDR; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (_) {}
+      ta.remove();
+    }
+    showToast((prefix || '地址已复制 ✓') + ' 粘贴时请核对：开头 TSef · 结尾 SdCNt · 共 34 位');
+  }
+  const copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', () => { copyAddr(); copyBtn.textContent = '已复制 ✓'; setTimeout(() => copyBtn.textContent = '复制地址', 2200); });
+  document.getElementById('walletAddr').addEventListener('click', () => copyAddr());
+  document.querySelectorAll('.tier').forEach(t => t.addEventListener('click', () => copyAddr('已按 ' + t.dataset.copy + ' 档复制地址 ✓')));
+
+  // muyu (electronic wooden fish)
+  let merit = 0;
+  try { merit = parseInt(localStorage.getItem('cyber_merit') || '0', 10) || 0; } catch (e) {}
+  const meritNum = document.getElementById('meritNum');
+  meritNum.textContent = merit;
+  const muyuBtn = document.getElementById('muyuBtn'), muyuWrap = document.getElementById('muyuWrap');
+  let audioCtx = null;
+  function knock(){
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(880, audioCtx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(240, audioCtx.currentTime + 0.09);
+      g.gain.setValueAtTime(0.25, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.16);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(); o.stop(audioCtx.currentTime + 0.18);
+    } catch (e) {}
+  }
+  muyuBtn.addEventListener('click', e => {
+    merit++; meritNum.textContent = merit;
+    try { localStorage.setItem('cyber_merit', String(merit)); } catch (err) {}
+    muyuBtn.classList.remove('hit'); void muyuBtn.offsetWidth; muyuBtn.classList.add('hit');
+    knock();
+    const f = document.createElement('span');
+    f.className = 'float1'; f.textContent = '功德 +1';
+    const r = muyuWrap.getBoundingClientRect();
+    f.style.left = (e.clientX - r.left - 30 + (Math.random() * 40 - 20)) + 'px';
+    f.style.top = (e.clientY - r.top - 16) + 'px';
+    muyuWrap.appendChild(f); setTimeout(() => f.remove(), 1000);
+    if (merit === 100) showToast('功德破百！佛祖点头，服务器鞠躬 🙏');
+    if (merit === 1000) showToast('功德破千！您已是大佬本佬 👑');
+  });
+
+  // starfield
   (function(){
     const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
     let W, H, pts = [], mouse = { x: -9999, y: -9999 };
     function resize(){
       W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
-      const n = Math.min(110, Math.floor(W * H / 16000));
+      const n = Math.min(100, Math.floor(W * H / 17000));
       pts = Array.from({ length: n }, () => ({
         x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+        vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32,
         r: Math.random() * 1.6 + .4
       }));
     }
@@ -434,20 +464,20 @@
         if (p.x < 0 || p.x > W) p.vx *= -1;
         if (p.y < 0 || p.y > H) p.vy *= -1;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7);
-        ctx.fillStyle = 'rgba(180,200,255,.75)'; ctx.fill();
+        ctx.fillStyle = 'rgba(255,214,150,.7)'; ctx.fill();
       }
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
           const a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy;
           if (d < 12000) {
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(120,150,255,${(1 - d / 12000) * .16})`; ctx.stroke();
+            ctx.strokeStyle = `rgba(255,180,84,${(1 - d / 12000) * .15})`; ctx.stroke();
           }
         }
         const a = pts[i], dx = a.x - mouse.x, dy = a.y - mouse.y, d = dx * dx + dy * dy;
         if (d < 26000) {
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(162,89,255,${(1 - d / 26000) * .3})`; ctx.stroke();
+          ctx.strokeStyle = `rgba(255,94,138,${(1 - d / 26000) * .3})`; ctx.stroke();
         }
       }
       requestAnimationFrame(draw);
