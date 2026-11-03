@@ -33,7 +33,7 @@
   nav .links{display:flex; gap:34px}
   nav .links a{color:#e8e8ed; text-decoration:none; font-size:12px; opacity:.85; transition:opacity .2s}
   nav .links a:hover{opacity:1}
-  @media(max-width:640px){ nav .links{gap:18px} nav .links a:nth-child(3){display:none} }
+  @media(max-width:640px){ nav .links{gap:18px} nav .links a:nth-child(2){display:none} }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -166,6 +166,7 @@
     <div class="links">
       <a href="#stack">技术栈</a>
       <a href="#numbers">这一页</a>
+      <a href="#about">关于</a>
       <a href="#sponsor">赞助</a>
       <a href="https://lichunh.github.io" target="_blank" rel="noopener">简历站</a>
     </div>
@@ -175,7 +176,7 @@
 <header class="hero">
   <div class="eyebrow">henryli.duckdns.org</div>
   <h1>你好，我是<br><span class="grad">Henry Li。</span></h1>
-  <p class="sub">这一页不在某个模板网站上 — 它运行在<b>我自己的 AWS 云服务器</b>里，<br>穿过一个免费域名，来到你的屏幕上。</p>
+  <p class="sub">我是一名 <b>AI 产品前端开发</b>，兼职做<b>产品经理</b>，最近在认真补服务器这门课。<br>这一页就运行在<b>我自己的 AWS 云服务器</b>里 — 它是我的最新练习作业。</p>
   <div class="cta">
     <a class="btn primary" href="https://lichunh.github.io" target="_blank" rel="noopener">看看我的简历站</a>
     <a class="btn ghost" href="#stack">这页是怎么做出来的 →</a>
@@ -224,16 +225,31 @@
   </div>
 </section>
 
+<section id="about">
+  <div class="wrap">
+    <div class="kicker reveal">About</div>
+    <h2 class="reveal">写代码的人，<br>也在学着管服务器。</h2>
+    <div class="feature reveal">
+      <div>
+        <h3>白天做产品，晚上折腾云。</h3>
+        <p>我的本职是 AI 产品的前端开发，日常把大模型的能力做成顺手好用的界面；同时兼职产品经理，管需求、画原型、盯落地。最近在系统学习服务器与云计算 — 注册云账号、配安全防护、开 EC2、绑域名、部署上线，这个小站从头到尾就是我的实操作业。</p>
+        <p>前端开发 · 产品经理 · AI 产品 · 云计算学习中 — 如果你也在这几条线上有想聊的，欢迎顺着下面的赞助通道找到我（笑）。</p>
+      </div>
+      <div class="orb">🧑‍💻</div>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="sponsor">
   <div class="wrap">
     <div class="kicker reveal">Sponsor</div>
     <h2 class="reveal">觉得有意思？<br>请我喝杯咖啡。</h2>
-    <p class="lead reveal">这个小站靠 AWS 抵扣金活着。如果你想赞助一点服务器费，欢迎通过加密货币打赏 — 走 <b style="color:#e8e8ed">Optimism 网络</b>发送 ETH 即可，手续费只要几分钱。</p>
+    <p class="lead reveal">这个小站靠 AWS 抵扣金活着。如果你想赞助一点服务器费，欢迎用 <b style="color:#e8e8ed">USDT</b> 打赏 — 走 <b style="color:#e8e8ed">TRON 网络</b>发送，手续费低到几乎可以忽略。</p>
     <div class="addrbox reveal">
-      <span class="addr" id="walletAddr">0xb6f8976065069cDCdE4c16F68e79A276f32a71BE</span>
+      <span class="addr" id="walletAddr">TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt</span>
       <button class="copybtn" id="copyBtn" type="button">复制地址</button>
     </div>
-    <p class="chainnote reveal">网络：<b>Ethereum · Optimism（OP Mainnet）</b>。发送前请务必确认钱包里选的是 Optimism 网络 — 转错网络的资产可能无法找回。这个地址只能收款，公开它不会带来资金风险。</p>
+    <p class="chainnote reveal">币种与网络：<b>USDT · TRON（TRC20）</b>。请只向这个地址发送 TRON 网络的资产 — 发送其他网络的资产将永远丢失。这个地址只能收款，公开它不会带来资金风险。</p>
   </div>
 </section>
 
