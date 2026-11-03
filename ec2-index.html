@@ -33,13 +33,22 @@
     background:rgba(12,10,8,.66); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
     border-bottom:1px solid rgba(255,255,255,.06);
   }
-  nav .inner{width:min(1080px,92vw); display:flex; align-items:center; justify-content:space-between}
-  nav .logo{font-weight:800; font-size:15px; color:var(--txt); letter-spacing:.04em}
-  nav .links{display:flex; gap:30px}
-  nav .links a{color:#ece5d8; font-size:12.5px; opacity:.85; transition:.2s}
+  nav .inner{width:min(1080px,92vw); display:flex; align-items:center; justify-content:space-between; gap:14px}
+  nav .logo{font-weight:800; font-size:15px; color:var(--txt); letter-spacing:.04em; white-space:nowrap}
+  nav .links{display:flex; gap:26px; align-items:center}
+  nav .links a{color:#ece5d8; font-size:12.5px; opacity:.85; transition:.2s; white-space:nowrap}
   nav .links a:hover{opacity:1}
   nav .links a.hot{color:var(--gold); opacity:1; font-weight:700}
-  @media(max-width:680px){ nav .links{gap:16px} nav .links a:nth-child(2), nav .links a:nth-child(4){display:none} }
+  #langSel{
+    appearance:none; -webkit-appearance:none; cursor:pointer;
+    background:rgba(255,255,255,.06); color:#ece5d8; border:1px solid rgba(255,255,255,.16);
+    font-size:12.5px; font-family:inherit; padding:6px 26px 6px 12px; border-radius:980px; outline:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23a79f92' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat; background-position:right 10px center;
+  }
+  #langSel:hover{border-color:rgba(255,179,64,.5)}
+  #langSel option{background:#171310; color:#f7f3ec}
+  @media(max-width:760px){ nav .links{gap:15px} nav .links a:nth-child(2), nav .links a:nth-child(4){display:none} }
 
   .hero{position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; text-align:center; padding:150px 20px 110px; overflow:hidden}
   #stars{position:absolute; inset:0; z-index:0}
@@ -65,10 +74,10 @@
   .btn.ghost{color:var(--gold); border:1px solid rgba(255,179,64,.45)}
   .btn.ghost:hover{background:rgba(255,179,64,.08); transform:translateY(-2px)}
   .fuelbar{max-width:520px; margin:52px auto 0; text-align:left}
-  .fuelbar .labels{display:flex; justify-content:space-between; font-size:12.5px; color:#8d8577; letter-spacing:.05em; margin-bottom:9px}
+  .fuelbar .labels{display:flex; justify-content:space-between; font-size:12.5px; color:#8d8577; letter-spacing:.05em; margin-bottom:9px; gap:12px}
   .fuelbar .bar{height:10px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden}
   .fuelbar .fill{height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,#ff5e8a,#ff9f0a,#ffd97a); transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
-  .fuelbar .note{margin-top:10px; font-size:12.5px; color:#6f695d}
+  .fuelbar .note{margin-top:10px; font-size:12.5px; color:#6f695d; line-height:1.6}
 
   .marquee{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#0a0809; overflow:hidden; padding:18px 0; position:relative; z-index:2}
   .marquee .track{display:flex; width:max-content; animation:scroll 30s linear infinite}
@@ -89,7 +98,6 @@
   .card h3{font-size:21px; font-weight:700; margin-bottom:10px}
   .card p{color:var(--dim); font-size:15px; line-height:1.75}
 
-  /* muyu */
   .muyu-wrap{text-align:center; margin-top:56px; position:relative; z-index:1}
   .muyu{
     width:190px; height:190px; margin:0 auto; border-radius:50%; cursor:pointer; user-select:none; -webkit-user-select:none;
@@ -103,10 +111,9 @@
   @keyframes hit{ 30%{transform:scale(.93)} 60%{transform:scale(1.03)} }
   .merit{margin-top:28px; font-size:19px; color:var(--dim)}
   .merit b{font-size:30px; color:var(--gold); font-variant-numeric:tabular-nums}
-  .float1{position:absolute; font-weight:800; color:var(--gold); font-size:20px; pointer-events:none; animation:floatup 1s ease-out forwards; text-shadow:0 2px 12px rgba(255,159,10,.5)}
+  .float1{position:absolute; font-weight:800; color:var(--gold); font-size:20px; pointer-events:none; animation:floatup 1s ease-out forwards; text-shadow:0 2px 12px rgba(255,159,10,.5); white-space:nowrap}
   @keyframes floatup{ from{opacity:0; transform:translateY(6px) scale(.8)} 20%{opacity:1} to{opacity:0; transform:translateY(-72px) scale(1.15)} }
 
-  /* tiers */
   .tiers{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:56px}
   @media(max-width:1000px){ .tiers{grid-template-columns:repeat(2,1fr)} .tiers .tier:last-child{grid-column:span 2} }
   @media(max-width:520px){ .tiers{grid-template-columns:1fr} .tiers .tier:last-child{grid-column:auto} }
@@ -119,7 +126,6 @@
   .tier .go{margin-top:16px; font-size:13px; color:var(--gold); font-weight:600}
   .tier.king{border-color:rgba(255,179,64,.55); background:linear-gradient(180deg,#241a08,#120d06)}
 
-  /* sponsor */
   .sponsor-card{max-width:820px; margin:54px auto 0; border-radius:26px; padding:2px; position:relative; z-index:1; background:linear-gradient(120deg,#ff9f0a,#ff5e8a,#a259ff,#2997ff,#ff9f0a); background-size:300% 300%; animation:borderflow 9s ease infinite}
   @keyframes borderflow{ 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
   .sponsor-inner{background:#0c0a0d; border-radius:24px; padding:46px 38px; text-align:center}
@@ -127,7 +133,7 @@
   .sponsor-inner>p{color:var(--dim); font-size:16px; line-height:1.8; margin-top:14px}
   .qrrow{display:flex; gap:26px; align-items:stretch; justify-content:center; flex-wrap:wrap; margin-top:34px}
   .qrbox{background:#fff; border-radius:18px; padding:14px; width:196px; display:flex; flex-direction:column; align-items:center; gap:10px}
-  .qrbox .cap{color:#444; font-size:12px; letter-spacing:.06em}
+  .qrbox .cap{color:#444; font-size:12px; letter-spacing:.06em; text-align:center}
   .qrbox svg{width:160px; height:160px; display:block}
   .addrcol{flex:1; min-width:290px; max-width:470px; display:flex; flex-direction:column; justify-content:center; text-align:left}
   .addrbox{background:#070608; border:1px solid var(--line); border-radius:16px; padding:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap}
@@ -140,7 +146,6 @@
   .checks li b{color:var(--txt)}
   .checks li code{font-family:ui-monospace,Menlo,Consolas,monospace; color:#ffe1a8; font-size:13px}
 
-  /* board + faq */
   .board{max-width:720px; margin:54px auto 0; background:linear-gradient(180deg,#141118,#0a0908); border:1px dashed rgba(255,179,64,.4); border-radius:24px; padding:40px 34px; text-align:center; position:relative; z-index:1}
   .board .crown{font-size:40px}
   .board h3{font-size:23px; margin-top:12px}
@@ -168,13 +173,25 @@
 
 <nav>
   <div class="inner">
-    <a class="logo" href="#">🥣 赛博乞讨</a>
+    <a class="logo" href="#">🥣 <span data-i18n="brand">赛博乞讨</span></a>
     <div class="links">
-      <a href="#why">为何要饭</a>
-      <a href="#muyu">电子木鱼</a>
-      <a href="#menu">投喂菜单</a>
-      <a href="#faq">答疑</a>
-      <a href="#sponsor" class="hot">♥ 立即投喂</a>
+      <a href="#why" data-i18n="nav_why">为何要饭</a>
+      <a href="#muyu" data-i18n="nav_muyu">电子木鱼</a>
+      <a href="#menu" data-i18n="nav_menu">投喂菜单</a>
+      <a href="#faq" data-i18n="nav_faq">答疑</a>
+      <a href="#sponsor" class="hot" data-i18n="nav_feed">♥ 立即投喂</a>
+      <select id="langSel" aria-label="Language">
+        <option value="zh-CN">简体中文</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="pt">Português</option>
+        <option value="ru">Русский</option>
+      </select>
     </div>
   </div>
 </nav>
@@ -183,50 +200,50 @@
   <canvas id="stars"></canvas>
   <div class="glow g1"></div><div class="glow g2"></div>
   <div class="content">
-    <div class="badge"><span class="dot"></span>在线要饭中 · 服务器还没欠费 · 碗已擦亮</div>
+    <div class="badge"><span class="dot"></span><span data-i18n="hero_badge">在线要饭中 · 服务器还没欠费 · 碗已擦亮</span></div>
     <div><span class="bowl">🥣</span></div>
     <h1>
-      <span class="line"><span>赛博乞讨</span></span>
-      <span class="line"><span class="grad">在线要饭</span></span>
+      <span class="line"><span data-i18n="hero_t1">赛博乞讨</span></span>
+      <span class="line"><span class="grad" data-i18n="hero_t2">在线要饭</span></span>
     </h1>
-    <p class="roles">服务器在云端，碗在人间。<br>本人<b>佚名网友一枚</b>，守着一台租来的小服务器过日子 —<br>路过的大佬行行好，<b>随手投喂，功德 +1</b>。</p>
+    <p class="roles" data-i18n="hero_sub">服务器在云端，碗在人间。<br>本人<b>佚名网友一枚</b>，守着一台租来的小服务器过日子 —<br>路过的大佬行行好，<b>随手投喂，功德 +1</b>。</p>
     <div class="cta">
-      <a class="btn gold" href="#sponsor">♥ 立即投喂</a>
-      <a class="btn ghost" href="#muyu">先敲敲木鱼</a>
+      <a class="btn gold" href="#sponsor" data-i18n="hero_feed">♥ 立即投喂</a>
+      <a class="btn ghost" href="#muyu" data-i18n="hero_muyu">先敲敲木鱼</a>
     </div>
     <div class="fuelbar">
-      <div class="labels"><span>⛽ 服务器续命油量</span><span>抵扣金燃烧中…</span></div>
+      <div class="labels"><span data-i18n="fuel_l">⛽ 服务器续命油量</span><span data-i18n="fuel_r">抵扣金燃烧中…</span></div>
       <div class="bar"><div class="fill" id="fuelFill"></div></div>
-      <div class="note">本站目前靠云厂商送的抵扣金苟活，油量见底之日，就是大佬们出手之时。</div>
+      <div class="note" data-i18n="fuel_note">本站目前靠云厂商送的抵扣金苟活，油量见底之日，就是大佬们出手之时。</div>
     </div>
   </div>
 </header>
 
 <div class="marquee" aria-hidden="true">
   <div class="track" id="marqueeTrack">
-    <span>好人一生平安 <i>✦</i> 投喂大佬 功德无量 <i>✦</i> USDT · TRON <i>✦</i> 不强求 不道德绑架 <i>✦</i> 看完就走 也很感谢 <i>✦</i></span>
+    <span data-i18n="marquee">好人一生平安 <i>✦</i> 投喂大佬 功德无量 <i>✦</i> USDT · TRON <i>✦</i> 不强求 不道德绑架 <i>✦</i> 看完就走 也很感谢 <i>✦</i></span>
   </div>
 </div>
 
 <section id="why">
   <div class="wrap">
     <div class="kicker reveal">Why</div>
-    <h2 class="reveal">为什么要饭？<br><span class="grad">因为梦想也要交房租。</span></h2>
+    <h2 class="reveal" data-i18n="why_title">为什么要饭？<br><span class="grad">因为梦想也要交房租。</span></h2>
     <div class="grid">
       <div class="card reveal tilt">
         <div class="icon">☁️</div>
-        <h3>服务器要吃租金</h3>
-        <p>这台小服务器 24 小时不敢睡觉地守着这一页，每月雷打不动要交十几美元。新人抵扣金总有烧完的一天 — 烧完那天，它就得靠各位大佬的接济续命了。</p>
+        <h3 data-i18n="why_c1t">服务器要吃租金</h3>
+        <p data-i18n="why_c1p">这台小服务器 24 小时不敢睡觉地守着这一页，每月雷打不动要交十几美元。新人抵扣金总有烧完的一天 — 烧完那天，它就得靠各位大佬的接济续命了。</p>
       </div>
       <div class="card reveal tilt">
         <div class="icon">🎈</div>
-        <h3>能白嫖的都白嫖了</h3>
-        <p>域名是免费领的，HTTPS 证书是免费签的，能省的我都省到了极致。唯独服务器的租金，是这个世界上少数白嫖不到的东西之一。</p>
+        <h3 data-i18n="why_c2t">能白嫖的都白嫖了</h3>
+        <p data-i18n="why_c2p">域名是免费领的，HTTPS 证书是免费签的，能省的我都省到了极致。唯独服务器的租金，是这个世界上少数白嫖不到的东西之一。</p>
       </div>
       <div class="card reveal tilt">
         <div class="icon">🌱</div>
-        <h3>万一呢？</h3>
-        <p>万一哪位大佬心情好，赏的钱够它多活一个月呢？互联网的精神不就是这样 — 一群陌生人，莫名其妙地互相成全。这个站存在本身，就是一次小小的行为艺术。</p>
+        <h3 data-i18n="why_c3t">万一呢？</h3>
+        <p data-i18n="why_c3p">万一哪位大佬心情好，赏的钱够它多活一个月呢？互联网的精神不就是这样 — 一群陌生人，莫名其妙地互相成全。这个站存在本身，就是一次小小的行为艺术。</p>
       </div>
     </div>
   </div>
@@ -235,11 +252,11 @@
 <section id="muyu" style="padding-top:30px">
   <div class="wrap">
     <div class="kicker reveal">Cyber merit</div>
-    <h2 class="reveal">没钱也没关系，<br><span class="grad">敲敲木鱼也是情。</span></h2>
-    <p class="lead reveal">投喂是缘分，敲木鱼是心意。点一下，功德 +1 — 佛祖和服务器，都记在心里了。</p>
+    <h2 class="reveal" data-i18n="muyu_title">没钱也没关系，<br><span class="grad">敲敲木鱼也是情。</span></h2>
+    <p class="lead reveal" data-i18n="muyu_lead">投喂是缘分，敲木鱼是心意。点一下，功德 +1 — 佛祖和服务器，都记在心里了。</p>
     <div class="muyu-wrap reveal" id="muyuWrap">
-      <div class="muyu" id="muyuBtn" role="button" aria-label="敲木鱼"><span class="face">🙏</span></div>
-      <div class="merit">已积攒功德 <b id="meritNum">0</b> · 敲得越多，服务器越感动</div>
+      <div class="muyu" id="muyuBtn" role="button" aria-label="Wooden fish"><span class="face">🙏</span></div>
+      <div class="merit"><span data-i18n="merit_a">已积攒功德</span> <b id="meritNum">0</b> <span data-i18n="merit_b">· 敲得越多，服务器越感动</span></div>
     </div>
   </div>
 </section>
@@ -247,38 +264,38 @@
 <section id="menu" style="padding-top:30px">
   <div class="wrap">
     <div class="kicker reveal">Menu</div>
-    <h2 class="reveal">投喂菜单，<span class="grad">丰俭由人</span>。</h2>
-    <p class="lead reveal">点任意一档，收款地址就会自动复制好 — 到钱包里粘贴时，记得核对地址首尾（防骗指南在下面）。</p>
+    <h2 class="reveal" data-i18n="menu_title">投喂菜单，<span class="grad">丰俭由人</span>。</h2>
+    <p class="lead reveal" data-i18n="menu_lead">点任意一档，收款地址就会自动复制好 — 到钱包里粘贴时，记得核对地址首尾（防骗指南在下面）。</p>
     <div class="tiers">
-      <div class="tier reveal" data-copy="1 USDT">
+      <div class="tier reveal" data-amt="1 USDT">
         <div class="amt">1</div><div class="unit">USDT</div>
-        <h3>路过的善意</h3>
-        <p>功德 +1，好运一天。蚊子腿也是肉，碗先谢为敬。</p>
-        <div class="go">点我复制地址 →</div>
+        <h3 data-i18n="t1n">路过的善意</h3>
+        <p data-i18n="t1d">功德 +1，好运一天。蚊子腿也是肉，碗先谢为敬。</p>
+        <div class="go" data-i18n="tier_go">点我复制地址 →</div>
       </div>
-      <div class="tier reveal" data-copy="5 USDT">
+      <div class="tier reveal" data-amt="5 USDT">
         <div class="amt">5</div><div class="unit">USDT</div>
-        <h3>小小投喂</h3>
-        <p>福报 +5。够服务器多喘一天气，大佬大气。</p>
-        <div class="go">点我复制地址 →</div>
+        <h3 data-i18n="t2n">小小投喂</h3>
+        <p data-i18n="t2d">福报 +5。够服务器多喘一天气，大佬大气。</p>
+        <div class="go" data-i18n="tier_go">点我复制地址 →</div>
       </div>
-      <div class="tier reveal" data-copy="10 USDT">
+      <div class="tier reveal" data-amt="10 USDT">
         <div class="amt">10</div><div class="unit">USDT</div>
-        <h3>大佬本佬</h3>
-        <p>服务器今晚为您亮灯，日志里将留下您无名的传说。</p>
-        <div class="go">点我复制地址 →</div>
+        <h3 data-i18n="t3n">大佬本佬</h3>
+        <p data-i18n="t3d">服务器今晚为您亮灯，日志里将留下您无名的传说。</p>
+        <div class="go" data-i18n="tier_go">点我复制地址 →</div>
       </div>
-      <div class="tier reveal" data-copy="66 USDT">
+      <div class="tier reveal" data-amt="66 USDT">
         <div class="amt">66</div><div class="unit">USDT</div>
-        <h3>六六大顺</h3>
-        <p>碗口直接镶金边。您这一把，够它活小半年。</p>
-        <div class="go">点我复制地址 →</div>
+        <h3 data-i18n="t4n">六六大顺</h3>
+        <p data-i18n="t4d">碗口直接镶金边。您这一把，够它活小半年。</p>
+        <div class="go" data-i18n="tier_go">点我复制地址 →</div>
       </div>
-      <div class="tier king reveal" data-copy="188 USDT">
+      <div class="tier king reveal" data-amt="188 USDT">
         <div class="amt">188</div><div class="unit">USDT</div>
-        <h3>一路发 · 包养局</h3>
-        <p>这不叫投喂，这叫包养。请收下我隔空的一个响头。</p>
-        <div class="go">点我复制地址 →</div>
+        <h3 data-i18n="t5n">一路发 · 包养局</h3>
+        <p data-i18n="t5d">这不叫投喂，这叫包养。请收下我隔空的一个响头。</p>
+        <div class="go" data-i18n="tier_go">点我复制地址 →</div>
       </div>
     </div>
   </div>
@@ -287,27 +304,27 @@
 <section id="sponsor" style="padding-top:30px">
   <div class="wrap">
     <div class="kicker reveal" style="color:#ffb340">Sponsor</div>
-    <h2 class="reveal">赞助通道<br><span class="grad">就这一个，别无分号</span></h2>
+    <h2 class="reveal" data-i18n="sp_title">赞助通道<br><span class="grad">就这一个，别无分号</span></h2>
     <div class="sponsor-card reveal">
       <div class="sponsor-inner">
         <h3>💛 USDT · TRON（TRC20）</h3>
-        <p>扫码或复制地址，在您的钱包里完成转账即可。<br>钱包地址<b style="color:#f7f3ec">只能收款、不能转出</b>，公开它没有任何被盗风险。</p>
+        <p data-i18n="sp_desc">扫码或复制地址，在您的钱包里完成转账即可。<br>钱包地址<b style="color:#f7f3ec">只能收款、不能转出</b>，公开它没有任何被盗风险。</p>
         <div class="qrrow">
           <div class="qrbox">
             <?xml version='1.0' encoding='UTF-8'?>
 <svg width="160" height="160" width="33mm" height="33mm" version="1.1" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM10,2H11V3H10zM11,2H12V3H11zM12,2H13V3H12zM14,2H15V3H14zM15,2H16V3H15zM16,2H17V3H16zM17,2H18V3H17zM19,2H20V3H19zM20,2H21V3H20zM21,2H22V3H21zM22,2H23V3H22zM24,2H25V3H24zM25,2H26V3H25zM26,2H27V3H26zM27,2H28V3H27zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM2,3H3V4H2zM8,3H9V4H8zM10,3H11V4H10zM11,3H12V4H11zM14,3H15V4H14zM15,3H16V4H15zM18,3H19V4H18zM24,3H25V4H24zM30,3H31V4H30zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM12,4H13V5H12zM18,4H19V5H18zM20,4H21V5H20zM22,4H23V5H22zM24,4H25V5H24zM26,4H27V5H26zM27,4H28V5H27zM28,4H29V5H28zM30,4H31V5H30zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM11,5H12V6H11zM12,5H13V6H12zM13,5H14V6H13zM14,5H15V6H14zM16,5H17V6H16zM17,5H18V6H17zM22,5H23V6H22zM24,5H25V6H24zM26,5H27V6H26zM27,5H28V6H27zM28,5H29V6H28zM30,5H31V6H30zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM11,6H12V7H11zM16,6H17V7H16zM18,6H19V7H18zM20,6H21V7H20zM21,6H22V7H21zM24,6H25V7H24zM26,6H27V7H26zM27,6H28V7H27zM28,6H29V7H28zM30,6H31V7H30zM2,7H3V8H2zM8,7H9V8H8zM13,7H14V8H13zM14,7H15V8H14zM15,7H16V8H15zM17,7H18V8H17zM18,7H19V8H18zM21,7H22V8H21zM22,7H23V8H22zM24,7H25V8H24zM30,7H31V8H30zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM25,8H26V9H25zM26,8H27V9H26zM27,8H28V9H27zM28,8H29V9H28zM29,8H30V9H29zM30,8H31V9H30zM10,9H11V10H10zM13,9H14V10H13zM14,9H15V10H14zM17,9H18V10H17zM18,9H19V10H18zM19,9H20V10H19zM20,9H21V10H20zM22,9H23V10H22zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM7,10H8V11H7zM8,10H9V11H8zM9,10H10V11H9zM13,10H14V11H13zM15,10H16V11H15zM17,10H18V11H17zM18,10H19V11H18zM19,10H20V11H19zM20,10H21V11H20zM21,10H22V11H21zM22,10H23V11H22zM24,10H25V11H24zM27,10H28V11H27zM29,10H30V11H29zM30,10H31V11H30zM4,11H5V12H4zM6,11H7V12H6zM7,11H8V12H7zM10,11H11V12H10zM11,11H12V12H11zM13,11H14V12H13zM15,11H16V12H15zM16,11H17V12H16zM17,11H18V12H17zM21,11H22V12H21zM25,11H26V12H25zM26,11H27V12H26zM27,11H28V12H27zM29,11H30V12H29zM30,11H31V12H30zM3,12H4V13H3zM8,12H9V13H8zM9,12H10V13H9zM11,12H12V13H11zM13,12H14V13H13zM15,12H16V13H15zM20,12H21V13H20zM23,12H24V13H23zM26,12H27V13H26zM29,12H30V13H29zM2,13H3V14H2zM3,13H4V14H3zM4,13H5V14H4zM5,13H6V14H5zM6,13H7V14H6zM9,13H10V14H9zM11,13H12V14H11zM12,13H13V14H12zM14,13H15V14H14zM21,13H22V14H21zM24,13H25V14H24zM29,13H30V14H29zM30,13H31V14H30zM2,14H3V15H2zM3,14H4V15H3zM5,14H6V15H5zM7,14H8V15H7zM8,14H9V15H8zM9,14H10V15H9zM11,14H12V15H11zM12,14H13V15H12zM14,14H15V15H14zM16,14H17V15H16zM17,14H18V15H17zM18,14H19V15H18zM19,14H20V15H19zM22,14H23V15H22zM28,14H29V15H28zM3,15H4V16H3zM4,15H5V16H4zM5,15H6V16H5zM6,15H7V16H6zM10,15H11V16H10zM11,15H12V16H11zM12,15H13V16H12zM16,15H17V16H16zM17,15H18V16H17zM18,15H19V16H18zM20,15H21V16H20zM21,15H22V16H21zM22,15H23V16H22zM23,15H24V16H23zM27,15H28V16H27zM30,15H31V16H30zM3,16H4V17H3zM7,16H8V17H7zM8,16H9V17H8zM9,16H10V17H9zM10,16H11V17H10zM11,16H12V17H11zM13,16H14V17H13zM15,16H16V17H15zM18,16H19V17H18zM21,16H22V17H21zM22,16H23V17H22zM23,16H24V17H23zM24,16H25V17H24zM26,16H27V17H26zM27,16H28V17H27zM28,16H29V17H28zM29,16H30V17H29zM30,16H31V17H30zM3,17H4V18H3zM7,17H8V18H7zM10,17H11V18H10zM11,17H12V18H11zM12,17H13V18H12zM14,17H15V18H14zM16,17H17V18H16zM18,17H19V18H18zM21,17H22V18H21zM22,17H23V18H22zM24,17H25V18H24zM27,17H28V18H27zM30,17H31V18H30zM4,18H5V19H4zM5,18H6V19H5zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM10,18H11V19H10zM11,18H12V19H11zM12,18H13V19H12zM14,18H15V19H14zM16,18H17V19H16zM17,18H18V19H17zM20,18H21V19H20zM25,18H26V19H25zM26,18H27V19H26zM27,18H28V19H27zM28,18H29V19H28zM5,19H6V20H5zM7,19H8V20H7zM10,19H11V20H10zM13,19H14V20H13zM14,19H15V20H14zM16,19H17V20H16zM19,19H20V20H19zM21,19H22V20H21zM22,19H23V20H22zM23,19H24V20H23zM25,19H26V20H25zM27,19H28V20H27zM29,19H30V20H29zM30,19H31V20H30zM2,20H3V21H2zM4,20H5V21H4zM7,20H8V21H7zM8,20H9V21H8zM10,20H11V21H10zM13,20H14V21H13zM15,20H16V21H15zM16,20H17V21H16zM17,20H18V21H17zM18,20H19V21H18zM19,20H20V21H19zM20,20H21V21H20zM23,20H24V21H23zM24,20H25V21H24zM25,20H26V21H25zM27,20H28V21H27zM5,21H6V22H5zM12,21H13V22H12zM13,21H14V22H13zM14,21H15V22H14zM15,21H16V22H15zM16,21H17V22H16zM17,21H18V22H17zM19,21H20V22H19zM21,21H22V22H21zM28,21H29V22H28zM3,22H4V23H3zM6,22H7V23H6zM8,22H9V23H8zM9,22H10V23H9zM11,22H12V23H11zM12,22H13V23H12zM15,22H16V23H15zM16,22H17V23H16zM18,22H19V23H18zM19,22H20V23H19zM20,22H21V23H20zM21,22H22V23H21zM22,22H23V23H22zM23,22H24V23H23zM24,22H25V23H24zM25,22H26V23H25zM26,22H27V23H26zM28,22H29V23H28zM29,22H30V23H29zM30,22H31V23H30zM10,23H11V24H10zM11,23H12V24H11zM12,23H13V24H12zM17,23H18V24H17zM18,23H19V24H18zM19,23H20V24H19zM20,23H21V24H20zM21,23H22V24H21zM22,23H23V24H22zM26,23H27V24H26zM28,23H29V24H28zM2,24H3V25H2zM3,24H4V25H3zM4,24H5V25H4zM5,24H6V25H5zM6,24H7V25H6zM7,24H8V25H7zM8,24H9V25H8zM10,24H11V25H10zM11,24H12V25H11zM13,24H14V25H13zM16,24H17V25H16zM22,24H23V25H22zM24,24H25V25H24zM26,24H27V25H26zM28,24H29V25H28zM29,24H30V25H29zM2,25H3V26H2zM8,25H9V26H8zM10,25H11V26H10zM15,25H16V26H15zM16,25H17V26H16zM22,25H23V26H22zM26,25H27V26H26zM27,25H28V26H27zM2,26H3V27H2zM4,26H5V27H4zM5,26H6V27H5zM6,26H7V27H6zM8,26H9V27H8zM11,26H12V27H11zM12,26H13V27H12zM17,26H18V27H17zM22,26H23V27H22zM23,26H24V27H23zM24,26H25V27H24zM25,26H26V27H25zM26,26H27V27H26zM27,26H28V27H27zM28,26H29V27H28zM29,26H30V27H29zM2,27H3V28H2zM4,27H5V28H4zM5,27H6V28H5zM6,27H7V28H6zM8,27H9V28H8zM10,27H11V28H10zM11,27H12V28H11zM13,27H14V28H13zM17,27H18V28H17zM18,27H19V28H18zM20,27H21V28H20zM23,27H24V28H23zM26,27H27V28H26zM27,27H28V28H27zM28,27H29V28H28zM30,27H31V28H30zM2,28H3V29H2zM4,28H5V29H4zM5,28H6V29H5zM6,28H7V29H6zM8,28H9V29H8zM10,28H11V29H10zM11,28H12V29H11zM14,28H15V29H14zM15,28H16V29H15zM16,28H17V29H16zM22,28H23V29H22zM28,28H29V29H28zM30,28H31V29H30zM2,29H3V30H2zM8,29H9V30H8zM12,29H13V30H12zM13,29H14V30H13zM14,29H15V30H14zM15,29H16V30H15zM20,29H21V30H20zM23,29H24V30H23zM27,29H28V30H27zM29,29H30V30H29zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM5,30H6V31H5zM6,30H7V31H6zM7,30H8V31H7zM8,30H9V31H8zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM15,30H16V31H15zM16,30H17V31H16zM18,30H19V31H18zM19,30H20V31H19zM20,30H21V31H20zM21,30H22V31H21zM22,30H23V31H22zM23,30H24V31H23zM24,30H25V31H24zM28,30H29V31H28zM29,30H30V31H29z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg>
-            <div class="cap">扫码转账 · 防复制篡改</div>
+            <div class="cap" data-i18n="qr_cap">扫码转账 · 防复制篡改</div>
           </div>
           <div class="addrcol">
             <div class="addrbox">
-              <span class="addr" id="walletAddr" title="点击复制">TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt</span>
-              <button class="copybtn" id="copyBtn" type="button">复制地址</button>
+              <span class="addr" id="walletAddr" title="copy">TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt</span>
+              <button class="copybtn" id="copyBtn" type="button" data-i18n="copy_btn">复制地址</button>
             </div>
             <ul class="checks">
-              <li><b>转账前三查：</b>开头 <code>TSef</code>、结尾 <code>SdCNt</code>、总长 <b>34 位</b> — 防剪贴板木马篡改地址，这是币圈最常见的偷钱手法。</li>
-              <li><b>只认本页地址：</b>我从不通过私聊、邮件、评论区向任何人索要转账；别处看到的“站长地址”一律是冒牌货。</li>
-              <li><b>只收 TRON 网络 USDT：</b>转错网络的资产会永久丢失，我在链下无能为力，神仙难救。</li>
-              <li><b>小额随意，大额三思：</b>链上转账不可撤销，先小额试水是最稳的姿势。</li>
+              <li data-i18n="ck1"><b>转账前三查：</b>开头 <code>TSef</code>、结尾 <code>SdCNt</code>、总长 <b>34 位</b> — 防剪贴板木马篡改地址，这是币圈最常见的偷钱手法。</li>
+              <li data-i18n="ck2"><b>只认本页地址：</b>我从不通过私聊、邮件、评论区向任何人索要转账；别处看到的“站长地址”一律是冒牌货。</li>
+              <li data-i18n="ck3"><b>只收 TRON 网络 USDT：</b>转错网络的资产会永久丢失，我在链下无能为力，神仙难救。</li>
+              <li data-i18n="ck4"><b>小额随意，大额三思：</b>链上转账不可撤销，先小额试水是最稳的姿势。</li>
             </ul>
           </div>
         </div>
@@ -316,8 +333,8 @@
 
     <div class="board reveal">
       <div class="crown">👑</div>
-      <h3>功德榜 · 虚位以待</h3>
-      <p>本站尚未收到第一笔投喂。榜一大佬的位置，正空着 — 会是路过的你吗？<br>（放心：上榜也匿名，本站不收集、不公布任何人的信息。）</p>
+      <h3 data-i18n="board_t">功德榜 · 虚位以待</h3>
+      <p data-i18n="board_p">本站尚未收到第一笔投喂。榜一大佬的位置，正空着 — 会是路过的你吗？<br>（放心：上榜也匿名，本站不收集、不公布任何人的信息。）</p>
     </div>
   </div>
 </section>
@@ -325,23 +342,23 @@
 <section id="faq" style="padding-top:30px">
   <div class="wrap">
     <div class="kicker reveal">FAQ</div>
-    <h2 class="reveal">要饭也要<span class="grad">明明白白</span>。</h2>
+    <h2 class="reveal" data-i18n="faq_title">要饭也要<span class="grad">明明白白</span>。</h2>
     <div class="faq">
       <div class="qa reveal">
-        <h3>钱到底去哪儿了？</h3>
-        <p>全部喂给这台服务器交租金，让它能一直在线陪大家玩。它就是个无情的吞金兽，除此之外别无他用 — 本站不卖课、不拉群、不承诺任何回报，纯属图一乐。</p>
+        <h3 data-i18n="q1t">钱到底去哪儿了？</h3>
+        <p data-i18n="q1p">全部喂给这台服务器交租金，让它能一直在线陪大家玩。它就是个无情的吞金兽，除此之外别无他用 — 本站不卖课、不拉群、不承诺任何回报，纯属图一乐。</p>
       </div>
       <div class="qa reveal">
-        <h3>地址公开挂在网上，安全吗？</h3>
-        <p>安全。收款地址就像银行卡的“只进不出”公开账号：任何人都能往里打钱，但没人能凭它把钱转走 — 能转钱的私钥从不联网、不出现在任何页面里。真正要防的是骗子冒充我另给地址，所以请只认本页这一个。</p>
+        <h3 data-i18n="q2t">地址公开挂在网上，安全吗？</h3>
+        <p data-i18n="q2p">安全。收款地址就像银行卡的“只进不出”公开账号：任何人都能往里打钱，但没人能凭它把钱转走 — 能转钱的私钥从不联网、不出现在任何页面里。真正要防的是骗子冒充我另给地址，所以请只认本页这一个。</p>
       </div>
       <div class="qa reveal">
-        <h3>转错了能退吗？</h3>
-        <p>不能，区块链转账是泼出去的水。所以菜单才反复念叨：核对首尾、先小额。真转错了，我在链下也捞不回来 — 这题神仙来了也摇头。</p>
+        <h3 data-i18n="q3t">转错了能退吗？</h3>
+        <p data-i18n="q3p">不能，区块链转账是泼出去的水。所以菜单才反复念叨：核对首尾、先小额。真转错了，我在链下也捞不回来 — 这题神仙来了也摇头。</p>
       </div>
       <div class="qa reveal">
-        <h3>这个网站会收集我的信息吗？</h3>
-        <p>不会。它就是一个纯静态的单页：没有账号、没有表单、没有统计代码、没有 Cookie。你来了，看一眼，敲敲木鱼，走了 — 不留痕迹，我也不知道你是谁。这年头，这么干净的网站不多了。</p>
+        <h3 data-i18n="q4t">这个网站会收集我的信息吗？</h3>
+        <p data-i18n="q4p">不会。它就是一个纯静态的单页：没有账号、没有表单、没有统计代码、没有 Cookie。你来了，看一眼，敲敲木鱼，走了 — 不留痕迹，我也不知道你是谁。这年头，这么干净的网站不多了。</p>
       </div>
     </div>
   </div>
@@ -349,140 +366,178 @@
 
 <footer>
   <div class="big">🥣</div>
-  <div>© 2026 一位佚名网友 · 服务器在云端，碗在人间</div>
-  <div>本站为纯静态页面：无后台 · 无数据库 · 无追踪 — 黑客来了也只能敲敲木鱼</div>
+  <div data-i18n="foot1">© 2026 一位佚名网友 · 服务器在云端，碗在人间</div>
+  <div data-i18n="foot2">本站为纯静态页面：无后台 · 无数据库 · 无追踪 — 黑客来了也只能敲敲木鱼</div>
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
-  // reveal on scroll
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const I18N = {"zh-CN": {"brand": "赛博乞讨", "nav_why": "为何要饭", "nav_muyu": "电子木鱼", "nav_menu": "投喂菜单", "nav_faq": "答疑", "nav_feed": "♥ 立即投喂", "hero_badge": "在线要饭中 · 服务器还没欠费 · 碗已擦亮", "hero_t1": "赛博乞讨", "hero_t2": "在线要饭", "hero_sub": "服务器在云端，碗在人间。<br>本人<b>佚名网友一枚</b>，守着一台租来的小服务器过日子 —<br>路过的大佬行行好，<b>随手投喂，功德 +1</b>。", "hero_feed": "♥ 立即投喂", "hero_muyu": "先敲敲木鱼", "fuel_l": "⛽ 服务器续命油量", "fuel_r": "抵扣金燃烧中…", "fuel_note": "本站目前靠云厂商送的抵扣金苟活，油量见底之日，就是大佬们出手之时。", "marquee": "好人一生平安 <i>✦</i> 投喂大佬 功德无量 <i>✦</i> USDT · TRON <i>✦</i> 不强求 不道德绑架 <i>✦</i> 看完就走 也很感谢 <i>✦</i>", "why_title": "为什么要饭？<br><span class=\"grad\">因为梦想也要交房租。</span>", "why_c1t": "服务器要吃租金", "why_c1p": "这台小服务器 24 小时不敢睡觉地守着这一页，每月雷打不动要交十几美元。新人抵扣金总有烧完的一天 — 烧完那天，它就得靠各位大佬的接济续命了。", "why_c2t": "能白嫖的都白嫖了", "why_c2p": "域名是免费领的，HTTPS 证书是免费签的，能省的我都省到了极致。唯独服务器的租金，是这个世界上少数白嫖不到的东西之一。", "why_c3t": "万一呢？", "why_c3p": "万一哪位大佬心情好，赏的钱够它多活一个月呢？互联网的精神不就是这样 — 一群陌生人，莫名其妙地互相成全。这个站存在本身，就是一次小小的行为艺术。", "muyu_title": "没钱也没关系，<br><span class=\"grad\">敲敲木鱼也是情。</span>", "muyu_lead": "投喂是缘分，敲木鱼是心意。点一下，功德 +1 — 佛祖和服务器，都记在心里了。", "merit_a": "已积攒功德", "merit_b": "· 敲得越多，服务器越感动", "menu_title": "投喂菜单，<span class=\"grad\">丰俭由人</span>。", "menu_lead": "点任意一档，收款地址就会自动复制好 — 到钱包里粘贴时，记得核对地址首尾（防骗指南在下面）。", "t1n": "路过的善意", "t1d": "功德 +1，好运一天。蚊子腿也是肉，碗先谢为敬。", "t2n": "小小投喂", "t2d": "福报 +5。够服务器多喘一天气，大佬大气。", "t3n": "大佬本佬", "t3d": "服务器今晚为您亮灯，日志里将留下您无名的传说。", "t4n": "六六大顺", "t4d": "碗口直接镶金边。您这一把，够它活小半年。", "t5n": "一路发 · 包养局", "t5d": "这不叫投喂，这叫包养。请收下我隔空的一个响头。", "tier_go": "点我复制地址 →", "sp_title": "赞助通道<br><span class=\"grad\">就这一个，别无分号</span>", "sp_desc": "扫码或复制地址，在您的钱包里完成转账即可。<br>钱包地址<b style=\"color:#f7f3ec\">只能收款、不能转出</b>，公开它没有任何被盗风险。", "qr_cap": "扫码转账 · 防复制篡改", "copy_btn": "复制地址", "copy_done": "已复制 ✓", "ck1": "<b>转账前三查：</b>开头 <code>TSef</code>、结尾 <code>SdCNt</code>、总长 <b>34 位</b> — 防剪贴板木马篡改地址，这是币圈最常见的偷钱手法。", "ck2": "<b>只认本页地址：</b>我从不通过私聊、邮件、评论区向任何人索要转账；别处看到的“站长地址”一律是冒牌货。", "ck3": "<b>只收 TRON 网络 USDT：</b>转错网络的资产会永久丢失，我在链下无能为力，神仙难救。", "ck4": "<b>小额随意，大额三思：</b>链上转账不可撤销，先小额试水是最稳的姿势。", "board_t": "功德榜 · 虚位以待", "board_p": "本站尚未收到第一笔投喂。榜一大佬的位置，正空着 — 会是路过的你吗？<br>（放心：上榜也匿名，本站不收集、不公布任何人的信息。）", "faq_title": "要饭也要<span class=\"grad\">明明白白</span>。", "q1t": "钱到底去哪儿了？", "q1p": "全部喂给这台服务器交租金，让它能一直在线陪大家玩。它就是个无情的吞金兽，除此之外别无他用 — 本站不卖课、不拉群、不承诺任何回报，纯属图一乐。", "q2t": "地址公开挂在网上，安全吗？", "q2p": "安全。收款地址就像银行卡的“只进不出”公开账号：任何人都能往里打钱，但没人能凭它把钱转走 — 能转钱的私钥从不联网、不出现在任何页面里。真正要防的是骗子冒充我另给地址，所以请只认本页这一个。", "q3t": "转错了能退吗？", "q3p": "不能，区块链转账是泼出去的水。所以菜单才反复念叨：核对首尾、先小额。真转错了，我在链下也捞不回来 — 这题神仙来了也摇头。", "q4t": "这个网站会收集我的信息吗？", "q4p": "不会。它就是一个纯静态的单页：没有账号、没有表单、没有统计代码、没有 Cookie。你来了，看一眼，敲敲木鱼，走了 — 不留痕迹，我也不知道你是谁。这年头，这么干净的网站不多了。", "foot1": "© 2026 一位佚名网友 · 服务器在云端，碗在人间", "foot2": "本站为纯静态页面：无后台 · 无数据库 · 无追踪 — 黑客来了也只能敲敲木鱼", "meta_title": "赛博乞讨 · 在线要饭 | 碗已备好，只等大佬", "meta_desc": "一位佚名网友的云端小破站。服务器靠抵扣金续命，路过大佬赏口饭吃：USDT · TRON。纯静态页面，不收集任何信息。", "toast_copied": "地址已复制 ✓", "toast_tier": "已按 {amt} 档复制地址 ✓", "toast_verify": "粘贴时请核对：开头 TSef · 结尾 SdCNt · 共 34 位", "float_merit": "功德 +1", "merit_100": "功德破百！佛祖点头，服务器鞠躬 🙏", "merit_1000": "功德破千！您已是大佬本佬 👑"}, "zh-TW": {"brand": "賽博乞討", "nav_why": "為何要飯", "nav_muyu": "電子木魚", "nav_menu": "投餵菜單", "nav_faq": "答疑", "nav_feed": "♥ 立即投餵", "hero_badge": "在線要飯中 · 伺服器還沒欠費 · 碗已擦亮", "hero_t1": "賽博乞討", "hero_t2": "在線要飯", "hero_sub": "伺服器在雲端，碗在人間。<br>本人<b>佚名網友一枚</b>，守著一台租來的小伺服器過日子 —<br>路過的大佬行行好，<b>隨手投餵，功德 +1</b>。", "hero_feed": "♥ 立即投餵", "hero_muyu": "先敲敲木魚", "fuel_l": "⛽ 伺服器續命油量", "fuel_r": "抵扣金燃燒中…", "fuel_note": "本站目前靠雲廠商送的抵扣金苟活，油量見底之日，就是大佬們出手之時。", "marquee": "好人一生平安 <i>✦</i> 投餵大佬 功德無量 <i>✦</i> USDT · TRON <i>✦</i> 不強求 不道德綁架 <i>✦</i> 看完就走 也很感謝 <i>✦</i>", "why_title": "為什麼要飯？<br><span class=\"grad\">因為夢想也要交房租。</span>", "why_c1t": "伺服器要吃租金", "why_c1p": "這台小伺服器 24 小時不敢睡覺地守著這一頁，每月雷打不動要交十幾美元。新人抵扣金總有燒完的一天 — 燒完那天，它就得靠各位大佬的接濟續命了。", "why_c2t": "能白嫖的都白嫖了", "why_c2p": "網域是免費領的，HTTPS 憑證是免費簽的，能省的我都省到了極致。唯獨伺服器的租金，是這個世界上少數白嫖不到的東西之一。", "why_c3t": "萬一呢？", "why_c3p": "萬一哪位大佬心情好，賞的錢夠它多活一個月呢？網路的精神不就是這樣 — 一群陌生人，莫名其妙地互相成全。這個站存在本身，就是一次小小的行為藝術。", "muyu_title": "沒錢也沒關係，<br><span class=\"grad\">敲敲木魚也是情。</span>", "muyu_lead": "投餵是緣分，敲木魚是心意。點一下，功德 +1 — 佛祖和伺服器，都記在心裡了。", "merit_a": "已積攢功德", "merit_b": "· 敲得越多，伺服器越感動", "menu_title": "投餵菜單，<span class=\"grad\">豐儉由人</span>。", "menu_lead": "點任意一檔，收款地址就會自動複製好 — 到錢包裡貼上時，記得核對地址首尾（防騙指南在下面）。", "t1n": "路過的善意", "t1d": "功德 +1，好運一天。蚊子腿也是肉，碗先謝為敬。", "t2n": "小小投餵", "t2d": "福報 +5。夠伺服器多喘一口氣，大佬大氣。", "t3n": "大佬本佬", "t3d": "伺服器今晚為您亮燈，日誌裡將留下您無名的傳說。", "t4n": "六六大順", "t4d": "碗口直接鑲金邊。您這一把，夠它活小半年。", "t5n": "一路發 · 包養局", "t5d": "這不叫投餵，這叫包養。請收下我隔空的一個響頭。", "tier_go": "點我複製地址 →", "sp_title": "贊助通道<br><span class=\"grad\">就這一個，別無分號</span>", "sp_desc": "掃碼或複製地址，在您的錢包裡完成轉帳即可。<br>錢包地址<b style=\"color:#f7f3ec\">只能收款、不能轉出</b>，公開它沒有任何被盜風險。", "qr_cap": "掃碼轉帳 · 防複製篡改", "copy_btn": "複製地址", "copy_done": "已複製 ✓", "ck1": "<b>轉帳前三查：</b>開頭 <code>TSef</code>、結尾 <code>SdCNt</code>、總長 <b>34 位</b> — 防剪貼簿木馬篡改地址，這是幣圈最常見的偷錢手法。", "ck2": "<b>只認本頁地址：</b>我從不透過私聊、郵件、留言區向任何人索要轉帳；別處看到的「站長地址」一律是冒牌貨。", "ck3": "<b>只收 TRON 網路 USDT：</b>轉錯網路的資產會永久遺失，我在鏈下無能為力，神仙難救。", "ck4": "<b>小額隨意，大額三思：</b>鏈上轉帳不可撤銷，先小額試水是最穩的姿勢。", "board_t": "功德榜 · 虛位以待", "board_p": "本站尚未收到第一筆投餵。榜一大佬的位置，正空著 — 會是路過的你嗎？<br>（放心：上榜也匿名，本站不收集、不公佈任何人的資訊。）", "faq_title": "要飯也要<span class=\"grad\">明明白白</span>。", "q1t": "錢到底去哪兒了？", "q1p": "全部餵給這台伺服器交租金，讓它能一直在線陪大家玩。它就是個無情的吞金獸，除此之外別無他用 — 本站不賣課、不拉群、不承諾任何回報，純屬圖一樂。", "q2t": "地址公開掛在網上，安全嗎？", "q2p": "安全。收款地址就像銀行卡的「只進不出」公開帳號：任何人都能往裡打錢，但沒人能憑它把錢轉走 — 能轉錢的私鑰從不上網、不出現在任何頁面裡。真正要防的是騙子冒充我另給地址，所以請只認本頁這一個。", "q3t": "轉錯了能退嗎？", "q3p": "不能，區塊鏈轉帳是潑出去的水。所以菜單才反覆念叨：核對首尾、先小額。真轉錯了，我在鏈下也撈不回來 — 這題神仙來了也搖頭。", "q4t": "這個網站會收集我的資訊嗎？", "q4p": "不會。它就是一個純靜態的單頁：沒有帳號、沒有表單、沒有統計程式碼、沒有 Cookie。你來了，看一眼，敲敲木魚，走了 — 不留痕跡，我也不知道你是誰。這年頭，這麼乾淨的網站不多了。", "foot1": "© 2026 一位佚名網友 · 伺服器在雲端，碗在人間", "foot2": "本站為純靜態頁面：無後台 · 無資料庫 · 無追蹤 — 黑客來了也只能敲敲木魚", "meta_title": "賽博乞討 · 在線要飯 | 碗已備好，只等大佬", "meta_desc": "一位佚名網友的雲端小破站。伺服器靠抵扣金續命，路過大佬賞口飯吃：USDT · TRON。純靜態頁面，不收集任何資訊。", "toast_copied": "地址已複製 ✓", "toast_tier": "已按 {amt} 檔複製地址 ✓", "toast_verify": "貼上時請核對：開頭 TSef · 結尾 SdCNt · 共 34 位", "float_merit": "功德 +1", "merit_100": "功德破百！佛祖點頭，伺服器鞠躬 🙏", "merit_1000": "功德破千！您已是大佬本佬 👑"}, "en": {"brand": "Cyber Begging", "nav_why": "Why beg", "nav_muyu": "Wooden fish", "nav_menu": "Menu", "nav_faq": "FAQ", "nav_feed": "♥ Feed me", "hero_badge": "Now begging · Server not broke yet · Bowl polished", "hero_t1": "Cyber Begging", "hero_t2": "Professional Panhandling", "hero_sub": "The server lives in the cloud; the bowl lives down here.<br>I'm just <b>an anonymous netizen</b> keeping a tiny rented server alive —<br>dear passing whale, <b>a small tip earns you +1 karma</b>.", "hero_feed": "♥ Feed me now", "hero_muyu": "Tap the wooden fish first", "fuel_l": "⛽ Server survival fuel", "fuel_r": "Free credits burning…", "fuel_note": "This site currently survives on the cloud provider's free credits. The day the tank runs dry is the day the whales step in.", "marquee": "Good people live in peace <i>✦</i> Every tip is pure karma <i>✦</i> USDT · TRON <i>✦</i> No pressure, no guilt trips <i>✦</i> Just passing by? Thanks anyway <i>✦</i>", "why_title": "Why beg?<br><span class=\"grad\">Because even dreams pay rent.</span>", "why_c1t": "The server eats rent", "why_c1p": "This little server guards this page 24/7 without daring to sleep, and pays a dozen-plus dollars every single month. Free credits always run out someday — and on that day, it lives on the kindness of whales like you.", "why_c2t": "Everything free is already free", "why_c2p": "The domain was free. The HTTPS certificate was free. I have squeezed every possible cent. Server rent is one of the very few things on Earth that simply cannot be freeloaded.", "why_c3t": "But what if…?", "why_c3p": "What if some whale in a good mood tips enough for another month of life? That's the spirit of the internet — strangers inexplicably keeping each other going. This site is a tiny piece of performance art.", "muyu_title": "No money? No problem.<br><span class=\"grad\">Tap the wooden fish instead.</span>", "muyu_lead": "Tipping is fate; tapping is love. One tap, +1 karma — both Buddha and the server will remember it.", "merit_a": "Karma collected", "merit_b": "· The more you tap, the more moved the server feels", "menu_title": "The feeding menu — <span class=\"grad\">every budget welcome</span>.", "menu_lead": "Tap any tier and the address copies itself. When pasting it into your wallet, double-check the first and last characters (anti-scam guide below).", "t1n": "Passing kindness", "t1d": "Karma +1, luck all day. Even a mosquito's leg is meat — the bowl thanks you.", "t2n": "A small feeding", "t2d": "Blessings +5. Buys the server another day of breathing. Generous, boss.", "t3n": "Certified whale", "t3d": "The server lights up for you tonight; your anonymous legend enters the logs.", "t4n": "Smooth sixes", "t4d": "The bowl gets a gold rim. This one tip keeps it alive for almost half a year.", "t5n": "The full sponsorship", "t5d": "This is not a tip, this is adoption. Please accept one loud virtual kowtow.", "tier_go": "Tap to copy the address →", "sp_title": "The one &amp; only<br><span class=\"grad\">sponsorship channel</span>", "sp_desc": "Scan the code or copy the address, then send from your wallet.<br>A receive address <b style=\"color:#f7f3ec\">can only receive — never send</b>, so publishing it carries zero theft risk.", "qr_cap": "Scan to send · tamper-proof", "copy_btn": "Copy address", "copy_done": "Copied ✓", "ck1": "<b>Triple-check before sending:</b> starts with <code>TSef</code>, ends with <code>SdCNt</code>, <b>34 characters</b> total — this defeats clipboard malware that swaps addresses, the most common crypto theft trick.", "ck2": "<b>Only trust this page:</b> I never ask for transfers via DM, email or comments. Any 'owner's address' seen elsewhere is an impostor.", "ck3": "<b>USDT on TRON network only:</b> assets sent on the wrong network are lost forever, and there is nothing I can do off-chain.", "ck4": "<b>Small is casual, big deserves thought:</b> on-chain transfers are irreversible — a small test send first is the safest move.", "board_t": "Karma leaderboard · Vacant", "board_p": "This site has not received its first tip yet. The #1 whale seat is empty — could it be you, passing by?<br>(Relax: the board is anonymous too. This site collects and publishes nobody's information.)", "faq_title": "Begging, but <span class=\"grad\">transparently</span>.", "q1t": "Where does the money actually go?", "q1p": "Every cent feeds this server's rent so it can stay online and play with everyone. It's a ruthless money-eating machine with no other purpose — no courses, no groups, no promised returns. Purely for the bit.", "q2t": "Is it safe to post the address publicly?", "q2p": "Yes. A receive address is like a deposit-only public account: anyone can pay in, but nobody can move money out with it — the private key that moves funds never goes online and never appears on any page. The real danger is impostors sharing a different address, so only trust the one on this page.", "q3t": "Sent it wrong — can I get a refund?", "q3p": "No. A blockchain transfer is water under the bridge. That's why the menu keeps nagging: check the ends, start small. If it goes wrong, even I can't fish it back.", "q4t": "Does this site collect my information?", "q4p": "No. It's one purely static page: no accounts, no forms, no analytics code, no cookies. You arrive, glance, tap the fish, leave — no trace, and I have no idea who you are. Sites this clean are rare these days.", "foot1": "© 2026 An anonymous netizen · Server in the cloud, bowl on Earth", "foot2": "Pure static page: no backend · no database · no tracking — hackers can only tap the wooden fish", "meta_title": "Cyber Begging · Professional Panhandling | Bowl ready, awaiting whales", "meta_desc": "An anonymous netizen's tiny cloud site, surviving on free credits. Passing whales welcome to tip: USDT · TRON. Pure static page, collects nothing.", "toast_copied": "Address copied ✓", "toast_tier": "Address copied for the {amt} tier ✓", "toast_verify": "When pasting, verify: starts TSef · ends SdCNt · 34 chars", "float_merit": "Karma +1", "merit_100": "100 karma! Buddha nods, the server bows 🙏", "merit_1000": "1,000 karma! You are officially a whale 👑"}, "ja": {"brand": "サイバー物乞い", "nav_why": "なぜ乞うのか", "nav_muyu": "電子木魚", "nav_menu": "投げ銭メニュー", "nav_faq": "Q&A", "nav_feed": "♥ 投げ銭する", "hero_badge": "物乞い中 · サーバーはまだ無事 · お椀はピカピカ", "hero_t1": "サイバー物乞い", "hero_t2": "オンライン托鉢", "hero_sub": "サーバーは雲の上、お椀は地上。<br>私は<b>名もなきネット民</b>、借り物の小サーバーを守るだけ —<br>通りすがりの大物様、<b>投げ銭で功徳 +1</b> です。", "hero_feed": "♥ 今すぐ投げ銭", "hero_muyu": "まず木魚を叩く", "fuel_l": "⛽ サーバー延命燃料", "fuel_r": "無料クレジット燃焼中…", "fuel_note": "このサイトは今のところクラウドの無料クレジットで生き延びています。タンクが空になる日こそ、大物様の出番です。", "marquee": "善人に平穏あれ <i>✦</i> 投げ銭は功徳無量 <i>✦</i> USDT · TRON <i>✦</i> 無理強いなし <i>✦</i> 見てくれるだけでも感謝 <i>✦</i>", "why_title": "なぜ乞うのか？<br><span class=\"grad\">夢にも家賃がかかるから。</span>", "why_c1t": "サーバーは家賃を食う", "why_c1p": "この小サーバーは24時間眠らずにこのページを守り、毎月十数ドルを確実に払っています。無料クレジットはいつか尽きるもの — その日は、皆様のご慈悲で生き延びます。", "why_c2t": "タダのものは全部タダにした", "why_c2p": "ドメインは無料、HTTPS証明書も無料。節約できるものは極限まで節約しました。サーバーの家賃だけは、この世で数少ない「タダにできないもの」の一つです。", "why_c3t": "もしも…？", "why_c3p": "気分の良い大物様が、あと1ヶ月分の命を恵んでくれたら？それがインターネットの精神 — 見知らぬ者同士が不思議と支え合う。このサイト自体が小さなパフォーマンスアートです。", "muyu_title": "お金がなくても大丈夫。<br><span class=\"grad\">木魚を叩けば情けあり。</span>", "muyu_lead": "投げ銭は縁、木魚は心。1タップで功徳 +1 — 仏様もサーバーも、ちゃんと覚えています。", "merit_a": "積んだ功徳", "merit_b": "· 叩くほどサーバー感動", "menu_title": "投げ銭メニュー、<span class=\"grad\">お財布と相談で</span>。", "menu_lead": "どの档を選んでもアドレスが自動でコピーされます。ウォレットに貼る時は、先頭と末尾の確認を（防詐欺ガイドは下に）。", "t1n": "通りすがりの善意", "t1d": "功徳 +1、一日幸運。蚊の脚でも肉は肉、お椀が先にお礼を。", "t2n": "ささやかな投げ銭", "t2d": "福報 +5。サーバーがもう一日息できます。太っ腹！", "t3n": "大物そのもの", "t3d": "今夜サーバーはあなたのために灯ります。名もなき伝説がログに残ります。", "t4n": "六六大順", "t4d": "お椀の縁に金メッキ。この一投げで半年近く生きられます。", "t5n": "フルスポンサー枠", "t5d": "これは投げ銭ではなく養子縁組です。空を隔てた土下座をお受け取りください。", "tier_go": "タップでアドレスをコピー →", "sp_title": "スポンサー窓口<br><span class=\"grad\">ここ一箇所のみ</span>", "sp_desc": "QRをスキャンするかアドレスをコピーして、ウォレットから送金してください。<br>受取アドレスは<b style=\"color:#f7f3ec\">受け取る専用で送金はできません</b>。公開しても盗まれる心配はありません。", "qr_cap": "スキャン送金 · 改ざん防止", "copy_btn": "アドレスをコピー", "copy_done": "コピー済 ✓", "ck1": "<b>送金前の三重チェック：</b>先頭 <code>TSef</code>、末尾 <code>SdCNt</code>、全長 <b>34 文字</b> — アドレスをすり替えるクリップボード型マルウェア対策です。仮想通貨で最も多い盗難手口です。", "ck2": "<b>このページのアドレスだけを信頼：</b>DM・メール・コメントで送金を頼むことは絶対にありません。他所で見た「管理人のアドレス」は偽物です。", "ck3": "<b>TRON ネットワークの USDT のみ：</b>違うネットワークへ送った資産は永久に失われ、こちらではどうにもできません。", "ck4": "<b>少額は気軽に、大額は慎重に：</b>オンチェーン送金は取り消せません。まず少額テストが一番安全です。", "board_t": "功徳ランキング · 空席あり", "board_p": "このサイトはまだ最初の投げ銭を受け取っていません。ランキング1位の席は空いています — 通りすがりのあなたでは？<br>（ご安心を：ランキングも匿名です。本サイトは誰の情報も集めず、公開しません。）", "faq_title": "物乞いでも、<span class=\"grad\">明朗会計</span>。", "q1t": "お金は結局どこへ？", "q1p": "全額このサーバーの家賃に消え、皆と遊び続けるためにオンラインを維持します。それ以外の用途のない、金食いマシンです — 講座もグループもリターンの約束もなし。純粋にネタです。", "q2t": "アドレスを公開して安全？", "q2p": "安全です。受取アドレスは「入金専用」の公開口座のようなもの：誰でも入れられますが、これだけでは誰も引き出せません — 資金を動かす秘密鍵はネットに繋がらず、どのページにも載りません。本当の危険は、別アドレスを配る偽者です。このページの一つだけを信頼してください。", "q3t": "間違えて送ったら返金できる？", "q3p": "できません。ブロックチェーンの送金は覆水盆に返らず。だからメニューが口うるさいのです：末尾を確認、まずは少額。間違えたら私にも取り戻せません。", "q4t": "このサイトは私の情報を集める？", "q4p": "集めません。純粋な静的ページ1枚だけ：アカウントなし、フォームなし、解析コードなし、Cookieなし。来て、見て、木魚を叩いて、去る — 痕跡なし、あなたが誰かも分かりません。今どき珍しいほど綺麗なサイトです。", "foot1": "© 2026 名もなきネット民 · サーバーは雲の上、お椀は地上", "foot2": "純静的ページ：バックエンドなし · DBなし · 追跡なし — ハッカーも木魚しか叩けない", "meta_title": "サイバー物乞い · オンライン托鉢 | お椀準備完了、大物様待ち", "meta_desc": "名もなきネット民の小さな雲上サイト。無料クレジットで延命中。USDT · TRON で投げ銭歓迎。純静的ページ、情報収集なし。", "toast_copied": "アドレスをコピーしました ✓", "toast_tier": "{amt} 档のアドレスをコピー ✓", "toast_verify": "貼り付け時に確認：先頭 TSef · 末尾 SdCNt · 全34文字", "float_merit": "功徳 +1", "merit_100": "功徳100突破！仏様が頷き、サーバーがお辞儀 🙏", "merit_1000": "功徳1000突破！あなたこそ大物様 👑"}, "ko": {"brand": "사이버 거지", "nav_why": "왜 구걸하나", "nav_muyu": "전자 목탁", "nav_menu": "투척 메뉴", "nav_faq": "Q&A", "nav_feed": "♥ 지금 투척", "hero_badge": "구걸 중 · 서버 아직 안 망함 · 그릇 닦아둠", "hero_t1": "사이버 거지", "hero_t2": "온라인 구걸", "hero_sub": "서버는 구름 위에, 그릇은 지상에.<br>저는 <b>익명의 네티즌</b>일 뿐, 빌린 작은 서버 하나를 지키며 삽니다 —<br>지나가는 큰손님, <b>작은 투척에 공덕 +1</b> 입니다.", "hero_feed": "♥ 지금 투척하기", "hero_muyu": "목탁부터 두드리기", "fuel_l": "⛽ 서버 생존 연료", "fuel_r": "무료 크레딧 연소 중…", "fuel_note": "이 사이트는 지금 클라우드의 무료 크레딧으로 연명 중입니다. 연료가 바닥나는 날이 큰손님들이 나설 날입니다.", "marquee": "선한 분께 평생의 평안을 <i>✦</i> 투척은 공덕 무량 <i>✦</i> USDT · TRON <i>✦</i> 강요 없음 죄책감 없음 <i>✦</i> 보고만 가셔도 감사 <i>✦</i>", "why_title": "왜 구걸하냐고요?<br><span class=\"grad\">꿈도 월세를 내니까요.</span>", "why_c1t": "서버는 월세를 먹는다", "why_c1p": "이 작은 서버는 24시간 잠도 못 자고 이 페이지를 지키며 매달 십몇 달러를 꼬박꼬박 냅니다. 무료 크레딧은 언젠가 다 타버리고 — 그날이 오면 여러분의 자비로 연명하게 됩니다.", "why_c2t": "공짜인 건 다 공짜로 했다", "why_c2p": "도메인은 무료, HTTPS 인증서도 무료. 아낄 수 있는 건 극한까지 아꼈습니다. 서버 월세만은 이 세상에서 몇 안 되는 '공짜가 안 되는 것' 중 하나입니다.", "why_c3t": "만약에…?", "why_c3p": "기분 좋은 큰손이 한 달 치 생명을 던져주면요? 그게 인터넷의 정신이죠 — 낯선 이들이 묘하게 서로를 살립니다. 이 사이트 자체가 작은 행위예술입니다.", "muyu_title": "돈이 없어도 괜찮아요.<br><span class=\"grad\">목탁 두드리기도 정입니다.</span>", "muyu_lead": "투척은 인연, 목탁은 마음. 한 번 탭하면 공덕 +1 — 부처님도 서버도 마음에 새깁니다.", "merit_a": "쌓인 공덕", "merit_b": "· 많이 두드릴수록 서버가 감동합니다", "menu_title": "투척 메뉴, <span class=\"grad\">형편대로</span>.", "menu_lead": "어느 단계를 눌러도 주소가 자동 복사됩니다. 지갑에 붙여넣을 때 앞뒤 글자를 꼭 확인하세요 (사기 방지 가이드는 아래에).", "t1n": "지나가는 선의", "t1d": "공덕 +1, 하루 종일 행운. 모기 다리도 고기입니다, 그릇이 먼저 감사드립니다.", "t2n": "작은 투척", "t2d": "복 +5. 서버가 하루 더 숨 쉴 수 있습니다. 큰손 인정.", "t3n": "진짜 큰손", "t3d": "오늘 밤 서버는 당신을 위해 불을 켭니다. 익명의 전설이 로그에 남습니다.", "t4n": "육육대순", "t4d": "그릇 테두리에 금도금. 이 한 번으로 거의 반년을 삽니다.", "t5n": "후원의 끝판왕", "t5d": "이건 투척이 아니라 입양입니다. 공중 큰절을 받아주세요.", "tier_go": "눌러서 주소 복사 →", "sp_title": "후원 창구<br><span class=\"grad\">여기 단 하나뿐</span>", "sp_desc": "QR을 스캔하거나 주소를 복사해 지갑에서 보내주세요.<br>수신 주소는 <b style=\"color:#f7f3ec\">받기만 하고 보낼 수 없어</b> 공개해도 도난 위험이 없습니다.", "qr_cap": "스캔 송금 · 변조 방지", "copy_btn": "주소 복사", "copy_done": "복사됨 ✓", "ck1": "<b>송금 전 세 가지 확인:</b> 시작 <code>TSef</code>, 끝 <code>SdCNt</code>, 총 <b>34자</b> — 주소를 바꿔치기하는 클립보드 악성코드를 막는 법이며, 코인계에서 가장 흔한 도난 수법입니다.", "ck2": "<b>이 페이지의 주소만 신뢰:</b> DM·이메일·댓글로 송금을 요구한 적이 절대 없습니다. 다른 곳에서 본 '운영자 주소'는 전부 사칭입니다.", "ck3": "<b>TRON 네트워크 USDT만:</b> 네트워크를 틀리게 보내면 자산은 영원히 사라지고, 저도 오프체인에서는 어쩔 도리가 없습니다.", "ck4": "<b>소액은 편하게, 대액은 신중히:</b> 온체인 송금은 취소가 안 됩니다. 소액 테스트가 가장 안전합니다.", "board_t": "공덕 랭킹 · 자리 비어 있음", "board_p": "이 사이트는 아직 첫 투척을 받지 못했습니다. 1위 큰손의 자리가 비어 있어요 — 지나가는 당신이 될까요?<br>(안심하세요: 랭킹도 익명입니다. 이 사이트는 누구의 정보도 수집·공개하지 않습니다.)", "faq_title": "구걸도 <span class=\"grad\">투명하게</span>.", "q1t": "돈은 도대체 어디로 가나요?", "q1p": "전부 이 서버의 월세로 가서, 계속 온라인으로 여러분과 놀 수 있게 합니다. 다른 용도는 없는 무정한 돈 먹는 기계예요 — 강의도, 그룹도, 수익 약속도 없습니다. 순전히 재미로요.", "q2t": "주소를 공개해도 안전한가요?", "q2p": "안전합니다. 수신 주소는 '입금 전용' 공개 계좌와 같습니다: 누구나 넣을 수는 있지만 그것만으로 빼갈 수는 없습니다 — 자금을 움직이는 개인키는 온라인에 없고 어떤 페이지에도 없습니다. 진짜 위험은 다른 주소를 주는 사칭범이니, 이 페이지의 주소 하나만 믿어주세요.", "q3t": "잘못 보냈으면 환불되나요?", "q3p": "안 됩니다. 블록체인 송금은 엎질러진 물입니다. 그래서 메뉴가 그렇게 잔소리하는 거예요: 앞뒤 확인, 소액부터. 잘못 보내면 저도 되찾을 수 없습니다.", "q4t": "이 사이트는 제 정보를 수집하나요?", "q4p": "아니요. 순수 정적 페이지 한 장입니다: 계정 없음, 폼 없음, 분석 코드 없음, 쿠키 없음. 와서, 보고, 목탁 두드리고, 가면 — 흔적이 없고, 당신이 누군지 저도 모릅니다. 요즘 이런 깨끗한 사이트 드뭅니다.", "foot1": "© 2026 익명의 네티즌 · 서버는 구름 위, 그릇은 지상", "foot2": "순수 정적 페이지: 백엔드 없음 · DB 없음 · 추적 없음 — 해커도 목탁만 두드릴 뿐", "meta_title": "사이버 거지 · 온라인 구걸 | 그릇 준비 완료, 큰손 대기 중", "meta_desc": "익명 네티즌의 작은 클라우드 사이트, 무료 크레딧으로 연명 중. USDT · TRON 투척 환영. 순수 정적 페이지, 정보 수집 없음.", "toast_copied": "주소 복사됨 ✓", "toast_tier": "{amt} 단계 주소 복사됨 ✓", "toast_verify": "붙여넣을 때 확인: 시작 TSef · 끝 SdCNt · 총 34자", "float_merit": "공덕 +1", "merit_100": "공덕 100 돌파! 부처님이 끄덕이고 서버가 절합니다 🙏", "merit_1000": "공덕 1000 돌파! 당신이 진정한 큰손 👑"}, "es": {"brand": "Cibermendigo", "nav_why": "Por qué pedir", "nav_muyu": "Pez de madera", "nav_menu": "Menú", "nav_faq": "Dudas", "nav_feed": "♥ Aliméntame", "hero_badge": "Pidiendo en vivo · El servidor aún no quiebra · Cuenco pulido", "hero_t1": "Cibermendicidad", "hero_t2": "Pedir limosna en línea", "hero_sub": "El servidor vive en la nube; el cuenco, aquí abajo.<br>Soy solo <b>un internauta anónimo</b> manteniendo vivo un pequeño servidor alquilado —<br>ballena que pasas por aquí: <b>una pequeña propina suma +1 de karma</b>.", "hero_feed": "♥ Aliméntame ya", "hero_muyu": "Toca primero el pez de madera", "fuel_l": "⛽ Combustible de supervivencia", "fuel_r": "Créditos gratis quemándose…", "fuel_note": "Este sitio sobrevive hoy con los créditos gratuitos de la nube. El día que el tanque se vacíe será el día en que las ballenas actúen.", "marquee": "A la buena gente, paz eterna <i>✦</i> Cada propina es karma puro <i>✦</i> USDT · TRON <i>✦</i> Sin presiones ni culpas <i>✦</i> ¿Solo pasabas? Gracias igual <i>✦</i>", "why_title": "¿Por qué pedir?<br><span class=\"grad\">Porque hasta los sueños pagan alquiler.</span>", "why_c1t": "El servidor come alquiler", "why_c1p": "Este pequeño servidor vigila esta página 24/7 sin atreverse a dormir, y paga más de diez dólares cada mes, sin falta. Los créditos gratis siempre se acaban — y ese día, vivirá de la bondad de ballenas como tú.", "why_c2t": "Todo lo gratis ya es gratis", "why_c2p": "El dominio fue gratis. El certificado HTTPS fue gratis. He exprimido cada céntimo posible. El alquiler del servidor es una de las poquísimas cosas en la Tierra que simplemente no se pueden conseguir gratis.", "why_c3t": "¿Y si…?", "why_c3p": "¿Y si una ballena de buen humor da propina para otro mes de vida? Ese es el espíritu de internet: desconocidos manteniéndose a flote sin explicación. Este sitio es una pequeña obra de arte performativo.", "muyu_title": "¿Sin dinero? No pasa nada.<br><span class=\"grad\">Toca el pez de madera.</span>", "muyu_lead": "Dar propina es destino; tocar es cariño. Un toque, +1 de karma: Buda y el servidor lo recordarán.", "merit_a": "Karma acumulado", "merit_b": "· Cuanto más tocas, más se emociona el servidor", "menu_title": "El menú de propinas, <span class=\"grad\">para todo bolsillo</span>.", "menu_lead": "Toca cualquier nivel y la dirección se copia sola. Al pegarla en tu cartera, verifica el primer y el último carácter (guía antifraude abajo).", "t1n": "Bondad de paso", "t1d": "Karma +1, suerte todo el día. Hasta la pata de un mosquito es carne: el cuenco da las gracias.", "t2n": "Pequeña propina", "t2d": "Bendiciones +5. El servidor respira un día más. Generoso, jefe.", "t3n": "Ballena certificada", "t3d": "El servidor se enciende por ti esta noche; tu leyenda anónima entra en los registros.", "t4n": "Seises de la suerte", "t4d": "El cuenco recibe un borde dorado. Esta propina lo mantiene vivo casi medio año.", "t5n": "Patrocinio total", "t5d": "Esto no es una propina, es una adopción. Acepta una reverencia virtual bien sonora.", "tier_go": "Toca para copiar la dirección →", "sp_title": "El único y verdadero<br><span class=\"grad\">canal de patrocinio</span>", "sp_desc": "Escanea el código o copia la dirección y envía desde tu cartera.<br>Una dirección de recepción <b style=\"color:#f7f3ec\">solo puede recibir, nunca enviar</b>: publicarla no conlleva ningún riesgo de robo.", "qr_cap": "Escanea para enviar · a prueba de manipulación", "copy_btn": "Copiar dirección", "copy_done": "Copiado ✓", "ck1": "<b>Triple verificación antes de enviar:</b> empieza por <code>TSef</code>, termina en <code>SdCNt</code>, <b>34 caracteres</b> en total: así se derrota al malware de portapapeles que cambia direcciones, el truco de robo cripto más común.", "ck2": "<b>Solo confía en esta página:</b> nunca pido transferencias por mensaje privado, correo ni comentarios. Cualquier «dirección del dueño» vista en otro lugar es un impostor.", "ck3": "<b>Solo USDT en la red TRON:</b> los activos enviados por la red equivocada se pierden para siempre, y fuera de la cadena no puedo hacer nada.", "ck4": "<b>Poco, sin pensar; mucho, pensándolo:</b> las transferencias en cadena son irreversibles: una pequeña prueba primero es lo más seguro.", "board_t": "Tabla de karma · Vacante", "board_p": "Este sitio aún no ha recibido su primera propina. El puesto de ballena n.º 1 está vacío: ¿serás tú, que pasas por aquí?<br>(Tranquilo: la tabla también es anónima. Este sitio no recoge ni publica información de nadie.)", "faq_title": "Pedir, pero <span class=\"grad\">con transparencia</span>.", "q1t": "¿A dónde va realmente el dinero?", "q1p": "Cada céntimo alimenta el alquiler de este servidor para que siga en línea jugando con todos. Es una máquina despiadada de tragar dinero sin otro propósito: sin cursos, sin grupos, sin retornos prometidos. Puro humor.", "q2t": "¿Es seguro publicar la dirección?", "q2p": "Sí. Una dirección de recepción es como una cuenta pública de solo ingreso: cualquiera puede pagar, pero nadie puede sacar dinero con ella; la clave privada que mueve fondos nunca se conecta ni aparece en ninguna página. El peligro real son los impostores con otra dirección: confía solo en la de esta página.", "q3t": "¿Lo envié mal? ¿Hay reembolso?", "q3p": "No. Una transferencia en blockchain es agua derramada. Por eso el menú insiste tanto: revisa los extremos, empieza con poco. Si sale mal, ni yo puedo recuperarlo.", "q4t": "¿Este sitio recoge mi información?", "q4p": "No. Es una sola página puramente estática: sin cuentas, sin formularios, sin código de analítica, sin cookies. Llegas, miras, tocas el pez, te vas: sin rastro, y yo no tengo ni idea de quién eres. Sitios tan limpios ya casi no quedan.", "foot1": "© 2026 Un internauta anónimo · Servidor en la nube, cuenco en la Tierra", "foot2": "Página puramente estática: sin servidor de fondo, sin base de datos, sin rastreo: los hackers solo pueden tocar el pez de madera", "meta_title": "Cibermendicidad · Pedir limosna en línea | Cuenco listo, esperando ballenas", "meta_desc": "El pequeño sitio en la nube de un internauta anónimo, sobreviviendo con créditos gratis. Ballenas de paso: propinas en USDT · TRON bienvenidas. Página estática, no recoge nada.", "toast_copied": "Dirección copiada ✓", "toast_tier": "Dirección copiada para el nivel {amt} ✓", "toast_verify": "Al pegar, verifica: empieza TSef · termina SdCNt · 34 caracteres", "float_merit": "Karma +1", "merit_100": "¡100 de karma! Buda asiente, el servidor se inclina 🙏", "merit_1000": "¡1000 de karma! Ya eres oficialmente una ballena 👑"}, "fr": {"brand": "Cyber-mendicité", "nav_why": "Pourquoi mendier", "nav_muyu": "Poisson de bois", "nav_menu": "Menu", "nav_faq": "Questions", "nav_feed": "♥ Me nourrir", "hero_badge": "Mendicité en direct · Le serveur tient encore · Bol bien astiqué", "hero_t1": "Cyber-mendicité", "hero_t2": "La manche en ligne", "hero_sub": "Le serveur vit dans le nuage ; le bol vit ici-bas.<br>Je suis juste <b>un internaute anonyme</b> qui garde en vie un petit serveur loué —<br>baleine de passage, <b>un petit don vaut +1 de karma</b>.", "hero_feed": "♥ Me nourrir", "hero_muyu": "D'abord, le poisson de bois", "fuel_l": "⛽ Carburant de survie du serveur", "fuel_r": "Crédits gratuits en combustion…", "fuel_note": "Ce site survit pour l'instant grâce aux crédits gratuits du cloud. Le jour où le réservoir sera vide, ce sera au tour des baleines.", "marquee": "Paix éternelle aux gens bien <i>✦</i> Chaque don est du karma pur <i>✦</i> USDT · TRON <i>✦</i> Zéro pression, zéro culpabilité <i>✦</i> Simple passant ? Merci quand même <i>✦</i>", "why_title": "Pourquoi mendier ?<br><span class=\"grad\">Parce que même les rêves paient un loyer.</span>", "why_c1t": "Le serveur mange du loyer", "why_c1p": "Ce petit serveur garde cette page 24 h/24 sans oser dormir, et paie une douzaine de dollars chaque mois, sans faute. Les crédits gratuits finissent toujours par s'épuiser — et ce jour-là, il vivra de la bonté de baleines comme vous.", "why_c2t": "Tout ce qui pouvait être gratuit l'est", "why_c2p": "Le domaine était gratuit. Le certificat HTTPS était gratuit. J'ai pressé chaque centime possible. Le loyer du serveur est l'une des très rares choses au monde qui ne peuvent tout simplement pas être gratuites.", "why_c3t": "Et si… ?", "why_c3p": "Et si une baleine de bonne humeur offrait un mois de vie supplémentaire ? C'est l'esprit d'internet : des inconnus qui se soutiennent sans raison. Ce site est une petite performance artistique.", "muyu_title": "Pas d'argent ? Aucun souci.<br><span class=\"grad\">Tapez le poisson de bois.</span>", "muyu_lead": "Donner est un destin ; taper est une tendresse. Un tap, +1 de karma — Bouddha et le serveur s'en souviendront.", "merit_a": "Karma accumulé", "merit_b": "· Plus vous tapez, plus le serveur est ému", "menu_title": "Le menu des dons, <span class=\"grad\">pour toutes les bourses</span>.", "menu_lead": "Touchez un niveau et l'adresse se copie toute seule. En la collant dans votre portefeuille, vérifiez le premier et le dernier caractère (guide anti-arnaque ci-dessous).", "t1n": "Gentillesse de passage", "t1d": "Karma +1, chance toute la journée. Même une patte de moustique, c'est de la viande — le bol remercie d'avance.", "t2n": "Petit don", "t2d": "Bénédictions +5. Le serveur respire un jour de plus. Généreux, patron.", "t3n": "Baleine certifiée", "t3d": "Le serveur s'illumine pour vous ce soir ; votre légende anonyme entre dans les journaux.", "t4n": "Six porte-bonheur", "t4d": "Le bol reçoit un bord doré. Ce don le garde en vie presque six mois.", "t5n": "Le parrainage total", "t5d": "Ceci n'est pas un don, c'est une adoption. Veuillez accepter une révérence virtuelle bien sonore.", "tier_go": "Touchez pour copier l'adresse →", "sp_title": "Le seul et unique<br><span class=\"grad\">canal de parrainage</span>", "sp_desc": "Scannez le code ou copiez l'adresse, puis envoyez depuis votre portefeuille.<br>Une adresse de réception <b style=\"color:#f7f3ec\">peut seulement recevoir, jamais envoyer</b> : la publier ne présente aucun risque de vol.", "qr_cap": "Scannez pour envoyer · infalsifiable", "copy_btn": "Copier l'adresse", "copy_done": "Copié ✓", "ck1": "<b>Triple vérification avant l'envoi :</b> commence par <code>TSef</code>, se termine par <code>SdCNt</code>, <b>34 caractères</b> au total — pour déjouer les malwares de presse-papiers qui échangent les adresses, l'arnaque crypto la plus courante.", "ck2": "<b>Ne faites confiance qu'à cette page :</b> je ne demande jamais de transfert par message privé, e-mail ou commentaire. Toute « adresse du propriétaire » vue ailleurs est un imposteur.", "ck3": "<b>USDT sur le réseau TRON uniquement :</b> les actifs envoyés sur le mauvais réseau sont perdus à jamais, et je n'y peux rien hors chaîne.", "ck4": "<b>Petit montants libres, gros montants réfléchis :</b> les transferts on-chain sont irréversibles — un petit envoi test d'abord est le plus sûr.", "board_t": "Classement karma · Vacant", "board_p": "Ce site n'a pas encore reçu son premier don. La place de baleine n° 1 est libre — et si c'était vous, passant par là ?<br>(Rassurez-vous : le classement aussi est anonyme. Ce site ne collecte ni ne publie les informations de personne.)", "faq_title": "Mendier, mais <span class=\"grad\">en toute transparence</span>.", "q1t": "Où va vraiment l'argent ?", "q1p": "Chaque centime nourrit le loyer de ce serveur pour qu'il reste en ligne et joue avec tout le monde. C'est une machine impitoyable à avaler de l'argent, sans autre but — ni cours, ni groupes, ni rendements promis. Juste pour la blague.", "q2t": "Publier l'adresse, est-ce sûr ?", "q2p": "Oui. Une adresse de réception est comme un compte public en dépôt seul : tout le monde peut y verser, mais personne ne peut en retirer avec elle — la clé privée qui déplace les fonds ne va jamais en ligne et n'apparaît sur aucune page. Le vrai danger, ce sont les imposteurs avec une autre adresse : ne croyez que celle de cette page.", "q3t": "Erreur d'envoi — un remboursement ?", "q3p": "Non. Un transfert blockchain, c'est de l'eau renversée. Voilà pourquoi le menu radote : vérifiez les extrémités, commencez petit. En cas d'erreur, même moi je ne peux rien récupérer.", "q4t": "Ce site collecte-t-il mes informations ?", "q4p": "Non. C'est une page purement statique : aucun compte, aucun formulaire, aucun code d'analyse, aucun cookie. Vous arrivez, vous regardez, vous tapez le poisson, vous repartez — sans trace, et je n'ai aucune idée de qui vous êtes. Des sites aussi propres sont devenus rares.", "foot1": "© 2026 Un internaute anonyme · Serveur dans le nuage, bol sur Terre", "foot2": "Page purement statique : pas de back-end, pas de base de données, pas de pistage — les pirates ne peuvent que taper le poisson de bois", "meta_title": "Cyber-mendicité · La manche en ligne | Bol prêt, baleines attendues", "meta_desc": "Le petit site cloud d'un internaute anonyme, survivant grâce aux crédits gratuits. Baleines de passage : dons en USDT · TRON bienvenus. Page statique, ne collecte rien.", "toast_copied": "Adresse copiée ✓", "toast_tier": "Adresse copiée pour le niveau {amt} ✓", "toast_verify": "En collant, vérifiez : début TSef · fin SdCNt · 34 caractères", "float_merit": "Karma +1", "merit_100": "100 de karma ! Bouddha hoche la tête, le serveur s'incline 🙏", "merit_1000": "1000 de karma ! Vous êtes officiellement une baleine 👑"}, "de": {"brand": "Cyber-Bettelei", "nav_why": "Warum betteln", "nav_muyu": "Holzfisch", "nav_menu": "Menü", "nav_faq": "Fragen", "nav_feed": "♥ Füttere mich", "hero_badge": "Live am Betteln · Server noch nicht pleite · Schale poliert", "hero_t1": "Cyber-Bettelei", "hero_t2": "Online-Schnorren", "hero_sub": "Der Server lebt in der Cloud; die Schale lebt hier unten.<br>Ich bin nur <b>ein anonymer Netzbürger</b>, der einen kleinen gemieteten Server am Leben hält —<br>vorbeiziehender Wal: <b>eine kleine Spende gibt +1 Karma</b>.", "hero_feed": "♥ Jetzt füttern", "hero_muyu": "Erst den Holzfisch klopfen", "fuel_l": "⛽ Überlebenstreibstoff des Servers", "fuel_r": "Gratisguthaben verbrennt…", "fuel_note": "Diese Seite überlebt derzeit mit dem Gratisguthaben des Cloud-Anbieters. Am Tag, an dem der Tank leer ist, treten die Wale auf den Plan.", "marquee": "Guten Menschen ewiger Frieden <i>✦</i> Jede Spende ist pures Karma <i>✦</i> USDT · TRON <i>✦</i> Kein Druck, keine Schuldgefühle <i>✦</i> Nur vorbeigeschaut? Trotzdem danke <i>✦</i>", "why_title": "Warum betteln?<br><span class=\"grad\">Weil auch Träume Miete zahlen.</span>", "why_c1t": "Der Server frisst Miete", "why_c1p": "Dieser kleine Server bewacht diese Seite rund um die Uhr, ohne zu schlafen zu wagen, und zahlt jeden Monat zuverlässig über zehn Dollar. Gratisguthaben geht irgendwann immer aus — und an dem Tag lebt er von der Güte von Walen wie dir.", "why_c2t": "Alles Kostenlose ist schon kostenlos", "why_c2p": "Die Domain war gratis. Das HTTPS-Zertifikat war gratis. Ich habe jeden möglichen Cent herausgepresst. Servermiete ist eines der ganz wenigen Dinge auf der Welt, die sich einfach nicht erschnorren lassen.", "why_c3t": "Aber was, wenn…?", "why_c3p": "Was, wenn ein gut gelaunter Wal genug für einen weiteren Lebensmonat spendet? Das ist der Geist des Internets — Fremde, die sich unerklärlich gegenseitig tragen. Diese Seite ist ein kleines Stück Performance-Kunst.", "muyu_title": "Kein Geld? Kein Problem.<br><span class=\"grad\">Klopf einfach den Holzfisch.</span>", "muyu_lead": "Spenden ist Schicksal; Klopfen ist Zuneigung. Ein Tipp, +1 Karma — Buddha und der Server werden sich erinnern.", "merit_a": "Gesammeltes Karma", "merit_b": "· Je mehr du klopfst, desto gerührter der Server", "menu_title": "Das Fütterungsmenü — <span class=\"grad\">für jeden Geldbeutel</span>.", "menu_lead": "Tippe auf eine Stufe, und die Adresse kopiert sich selbst. Prüfe beim Einfügen in deine Wallet das erste und letzte Zeichen (Anti-Betrugs-Guide unten).", "t1n": "Freundlichkeit im Vorbeigehen", "t1d": "Karma +1, Glück den ganzen Tag. Auch ein Mückenbein ist Fleisch — die Schale dankt im Voraus.", "t2n": "Eine kleine Fütterung", "t2d": "Segen +5. Der Server atmet einen Tag länger. Großzügig, Boss.", "t3n": "Zertifizierter Wal", "t3d": "Der Server leuchtet heute Nacht für dich; deine anonyme Legende landet in den Logs.", "t4n": "Glückliche Sechsen", "t4d": "Die Schale bekommt einen Goldrand. Diese Spende hält sie fast ein halbes Jahr am Leben.", "t5n": "Die Vollpatenschaft", "t5d": "Das ist keine Spende, das ist eine Adoption. Bitte nimm eine laute virtuelle Verbeugung entgegen.", "tier_go": "Tippen, um die Adresse zu kopieren →", "sp_title": "Der einzige wahre<br><span class=\"grad\">Sponsoring-Kanal</span>", "sp_desc": "Scanne den Code oder kopiere die Adresse und sende aus deiner Wallet.<br>Eine Empfangsadresse <b style=\"color:#f7f3ec\">kann nur empfangen — niemals senden</b>. Sie zu veröffentlichen birgt keinerlei Diebstahlrisiko.", "qr_cap": "Scannen zum Senden · fälschungssicher", "copy_btn": "Adresse kopieren", "copy_done": "Kopiert ✓", "ck1": "<b>Dreifach-Check vor dem Senden:</b> beginnt mit <code>TSef</code>, endet mit <code>SdCNt</code>, insgesamt <b>34 Zeichen</b> — so besiegst du Zwischenablage-Malware, die Adressen austauscht; der häufigste Krypto-Diebstahlstrick.", "ck2": "<b>Traue nur dieser Seite:</b> Ich bitte niemals per DM, E-Mail oder Kommentar um Überweisungen. Jede anderswo gesehene „Adresse des Besitzers“ ist ein Betrüger.", "ck3": "<b>Nur USDT im TRON-Netzwerk:</b> Auf dem falschen Netzwerk gesendete Werte sind für immer verloren, und ich kann off-chain nichts tun.", "ck4": "<b>Klein locker, groß mit Bedacht:</b> On-Chain-Überweisungen sind unwiderruflich — ein kleiner Testversand zuerst ist am sichersten.", "board_t": "Karma-Rangliste · Frei", "board_p": "Diese Seite hat noch keine erste Spende erhalten. Der Platz des Wals Nr. 1 ist leer — könntest du es sein, der vorbeikommt?<br>(Entspann dich: Auch die Rangliste ist anonym. Diese Seite sammelt und veröffentlicht niemandes Daten.)", "faq_title": "Betteln, aber <span class=\"grad\">transparent</span>.", "q1t": "Wohin geht das Geld wirklich?", "q1p": "Jeder Cent füttert die Miete dieses Servers, damit er online bleibt und mit allen spielt. Er ist eine rücksichtslose Geldfressmaschine ohne anderen Zweck — keine Kurse, keine Gruppen, keine versprochenen Renditen. Rein zum Spaß.", "q2t": "Ist es sicher, die Adresse zu veröffentlichen?", "q2p": "Ja. Eine Empfangsadresse ist wie ein öffentliches Nur-Einzahlungs-Konto: Jeder kann einzahlen, aber niemand kann damit Geld abheben — der private Schlüssel, der Gelder bewegt, geht nie online und erscheint auf keiner Seite. Die echte Gefahr sind Hochstapler mit einer anderen Adresse; traue nur der auf dieser Seite.", "q3t": "Falsch gesendet — Rückerstattung?", "q3p": "Nein. Eine Blockchain-Überweisung ist verschüttetes Wasser. Darum nervt das Menü so: Enden prüfen, klein anfangen. Geht es schief, kann nicht einmal ich es zurückholen.", "q4t": "Sammelt diese Seite meine Daten?", "q4p": "Nein. Es ist eine einzige, rein statische Seite: keine Konten, keine Formulare, kein Analysecode, keine Cookies. Du kommst, schaust, klopfst den Fisch, gehst — ohne Spur, und ich habe keine Ahnung, wer du bist. So saubere Seiten sind heutzutage selten.", "foot1": "© 2026 Ein anonymer Netzbürger · Server in der Cloud, Schale auf der Erde", "foot2": "Rein statische Seite: kein Backend, keine Datenbank, kein Tracking — Hacker können nur den Holzfisch klopfen", "meta_title": "Cyber-Bettelei · Online-Schnorren | Schale bereit, Wale gesucht", "meta_desc": "Die kleine Cloud-Seite eines anonymen Netzbürgers, am Leben durch Gratisguthaben. Vorbeiziehende Wale willkommen: USDT · TRON. Rein statisch, sammelt nichts.", "toast_copied": "Adresse kopiert ✓", "toast_tier": "Adresse für die Stufe {amt} kopiert ✓", "toast_verify": "Beim Einfügen prüfen: Anfang TSef · Ende SdCNt · 34 Zeichen", "float_merit": "Karma +1", "merit_100": "100 Karma! Buddha nickt, der Server verbeugt sich 🙏", "merit_1000": "1000 Karma! Du bist offiziell ein Wal 👑"}, "pt": {"brand": "Cibermendicância", "nav_why": "Por que pedir", "nav_muyu": "Peixe de madeira", "nav_menu": "Cardápio", "nav_faq": "Dúvidas", "nav_feed": "♥ Me alimente", "hero_badge": "Pedindo ao vivo · Servidor ainda não faliu · Tigela polida", "hero_t1": "Cibermendicância", "hero_t2": "Esmolas online", "hero_sub": "O servidor mora na nuvem; a tigela mora aqui embaixo.<br>Sou só <b>um internauta anônimo</b> mantendo vivo um pequeno servidor alugado —<br>baleia de passagem: <b>uma pequena gorjeta rende +1 de karma</b>.", "hero_feed": "♥ Alimente-me já", "hero_muyu": "Bata primeiro no peixe de madeira", "fuel_l": "⛽ Combustível de sobrevivência", "fuel_r": "Créditos grátis queimando…", "fuel_note": "Este site sobrevive hoje com os créditos gratuitos da nuvem. No dia em que o tanque secar, será a vez das baleias.", "marquee": "Paz eterna às boas pessoas <i>✦</i> Cada gorjeta é karma puro <i>✦</i> USDT · TRON <i>✦</i> Sem pressão, sem culpa <i>✦</i> Só passou por aqui? Obrigado mesmo assim <i>✦</i>", "why_title": "Por que pedir?<br><span class=\"grad\">Porque até sonhos pagam aluguel.</span>", "why_c1t": "O servidor come aluguel", "why_c1p": "Este pequeno servidor guarda esta página 24/7 sem ousar dormir e paga mais de dez dólares todo mês, sem falta. Créditos grátis sempre acabam um dia — e nesse dia, ele viverá da bondade de baleias como você.", "why_c2t": "Tudo que podia ser grátis já é", "why_c2p": "O domínio foi grátis. O certificado HTTPS foi grátis. Espremi cada centavo possível. O aluguel do servidor é uma das pouquíssimas coisas na Terra que simplesmente não dá para conseguir de graça.", "why_c3t": "E se…?", "why_c3p": "E se uma baleia de bom humor der gorjeta para mais um mês de vida? Esse é o espírito da internet: estranhos se sustentando sem explicação. Este site é uma pequena obra de arte performática.", "muyu_title": "Sem dinheiro? Sem problema.<br><span class=\"grad\">Bata no peixe de madeira.</span>", "muyu_lead": "Dar gorjeta é destino; bater é carinho. Um toque, +1 de karma — Buda e o servidor vão se lembrar.", "merit_a": "Karma acumulado", "merit_b": "· Quanto mais você bate, mais o servidor se emociona", "menu_title": "O cardápio de gorjetas, <span class=\"grad\">para todo bolso</span>.", "menu_lead": "Toque em qualquer nível e o endereço se copia sozinho. Ao colar na sua carteira, confira o primeiro e o último caractere (guia antifraudes abaixo).", "t1n": "Bondade de passagem", "t1d": "Karma +1, sorte o dia todo. Até perna de mosquito é carne — a tigela agradece desde já.", "t2n": "Pequena gorjeta", "t2d": "Bênçãos +5. O servidor respira mais um dia. Generoso, chefe.", "t3n": "Baleia certificada", "t3d": "O servidor se acende por você esta noite; sua lenda anônima entra nos registros.", "t4n": "Seis da sorte", "t4d": "A tigela ganha uma borda dourada. Esta gorjeta a mantém viva por quase meio ano.", "t5n": "O patrocínio completo", "t5d": "Isto não é gorjeta, é adoção. Aceite uma reverência virtual bem barulhenta.", "tier_go": "Toque para copiar o endereço →", "sp_title": "O único e verdadeiro<br><span class=\"grad\">canal de patrocínio</span>", "sp_desc": "Escaneie o código ou copie o endereço e envie da sua carteira.<br>Um endereço de recebimento <b style=\"color:#f7f3ec\">só pode receber — nunca enviar</b>: publicá-lo não traz nenhum risco de roubo.", "qr_cap": "Escaneie para enviar · à prova de adulteração", "copy_btn": "Copiar endereço", "copy_done": "Copiado ✓", "ck1": "<b>Verificação tripla antes de enviar:</b> começa com <code>TSef</code>, termina com <code>SdCNt</code>, <b>34 caracteres</b> no total — assim você derrota o malware de área de transferência que troca endereços, o truque de roubo cripto mais comum.", "ck2": "<b>Confie apenas nesta página:</b> nunca peço transferências por mensagem privada, e-mail ou comentários. Qualquer «endereço do dono» visto em outro lugar é um impostor.", "ck3": "<b>Somente USDT na rede TRON:</b> ativos enviados pela rede errada se perdem para sempre, e fora da cadeia não posso fazer nada.", "ck4": "<b>Pouco, sem pensar; muito, pensando:</b> transferências on-chain são irreversíveis — um pequeno envio de teste primeiro é o mais seguro.", "board_t": "Ranking de karma · Vago", "board_p": "Este site ainda não recebeu sua primeira gorjeta. O lugar de baleia nº 1 está vazio — será você, de passagem?<br>(Relaxe: o ranking também é anônimo. Este site não coleta nem publica informações de ninguém.)", "faq_title": "Pedir, mas <span class=\"grad\">com transparência</span>.", "q1t": "Para onde o dinheiro realmente vai?", "q1p": "Cada centavo alimenta o aluguel deste servidor para que ele continue online brincando com todos. É uma máquina impiedosa de engolir dinheiro, sem nenhum outro propósito — sem cursos, sem grupos, sem retornos prometidos. Pura diversão.", "q2t": "É seguro publicar o endereço?", "q2p": "Sim. Um endereço de recebimento é como uma conta pública só de depósito: qualquer um pode pagar, mas ninguém pode sacar com ele — a chave privada que move os fundos nunca entra online nem aparece em nenhuma página. O perigo real são impostores com outro endereço: confie apenas no desta página.", "q3t": "Enviei errado — tem reembolso?", "q3p": "Não. Uma transferência em blockchain é água derramada. É por isso que o cardápio insiste tanto: confira as pontas, comece pequeno. Se der errado, nem eu consigo recuperar.", "q4t": "Este site coleta minhas informações?", "q4p": "Não. É uma única página puramente estática: sem contas, sem formulários, sem código de análise, sem cookies. Você chega, olha, bate no peixe, vai embora — sem rastro, e eu não faço ideia de quem você é. Sites tão limpos são raros hoje em dia.", "foot1": "© 2026 Um internauta anônimo · Servidor na nuvem, tigela na Terra", "foot2": "Página puramente estática: sem back-end, sem banco de dados, sem rastreamento — hackers só podem bater no peixe de madeira", "meta_title": "Cibermendicância · Esmolas online | Tigela pronta, esperando baleias", "meta_desc": "O pequeno site em nuvem de um internauta anônimo, sobrevivendo com créditos grátis. Baleias de passagem: gorjetas em USDT · TRON são bem-vindas. Página estática, não coleta nada.", "toast_copied": "Endereço copiado ✓", "toast_tier": "Endereço copiado para o nível {amt} ✓", "toast_verify": "Ao colar, verifique: começa TSef · termina SdCNt · 34 caracteres", "float_merit": "Karma +1", "merit_100": "100 de karma! Buda acena, o servidor se curva 🙏", "merit_1000": "1000 de karma! Você é oficialmente uma baleia 👑"}, "ru": {"brand": "Кибер-попрошайка", "nav_why": "Зачем просить", "nav_muyu": "Деревянная рыба", "nav_menu": "Меню", "nav_faq": "Вопросы", "nav_feed": "♥ Покормить", "hero_badge": "Попрошайничаю онлайн · Сервер ещё не сдох · Миска начищена", "hero_t1": "Кибер-попрошайка", "hero_t2": "Милостыня онлайн", "hero_sub": "Сервер живёт в облаке, а миска — здесь, на земле.<br>Я просто <b>анонимный пользователь сети</b>, поддерживаю жизнь маленького арендованного сервера —<br>проходящий мимо кит, <b>небольшой донат — это +1 к карме</b>.", "hero_feed": "♥ Покормить сейчас", "hero_muyu": "Сначала постучать по рыбе", "fuel_l": "⛽ Топливо выживания сервера", "fuel_r": "Бесплатные кредиты сгорают…", "fuel_note": "Сейчас этот сайт выживает на бесплатных кредитах облака. В день, когда бак опустеет, настанет черёд китов.", "marquee": "Добрым людям — вечный покой <i>✦</i> Каждый донат — чистая карма <i>✦</i> USDT · TRON <i>✦</i> Без давления и чувства вины <i>✦</i> Просто заглянули? Всё равно спасибо <i>✦</i>", "why_title": "Зачем просить?<br><span class=\"grad\">Потому что даже мечты платят аренду.</span>", "why_c1t": "Сервер ест аренду", "why_c1p": "Этот маленький сервер круглосуточно сторожит эту страницу, не смея уснуть, и каждый месяц исправно платит больше десяти долларов. Бесплатные кредиты когда-нибудь заканчиваются — и в тот день он будет жить добротой таких китов, как вы.", "why_c2t": "Всё бесплатное уже бесплатно", "why_c2p": "Домен был бесплатным. HTTPS-сертификат был бесплатным. Я выжал каждый возможный цент. Аренда сервера — одна из немногих вещей на Земле, которые просто нельзя получить даром.", "why_c3t": "А вдруг…?", "why_c3p": "А вдруг кит в хорошем настроении кинет на ещё месяц жизни? В этом дух интернета — незнакомцы необъяснимо поддерживают друг друга. Этот сайт — маленький перформанс.", "muyu_title": "Нет денег? Не беда.<br><span class=\"grad\">Постучите по деревянной рыбе.</span>", "muyu_lead": "Донат — это судьба, стук — это любовь. Один тап — +1 к карме: и Будда, и сервер запомнят.", "merit_a": "Собрано кармы", "merit_b": "· Чем больше стучите, тем сильнее тронут сервер", "menu_title": "Меню донатов — <span class=\"grad\">на любой кошелёк</span>.", "menu_lead": "Нажмите на любой уровень, и адрес скопируется сам. Вставляя его в кошелёк, проверьте первый и последний символы (антимошеннический гид ниже).", "t1n": "Мимоходная доброта", "t1d": "Карма +1, удача на весь день. Даже комариная ножка — мясо: миска благодарит заранее.", "t2n": "Небольшой донат", "t2d": "Благословений +5. Сервер дышит ещё один день. Щедро, босс.", "t3n": "Сертифицированный кит", "t3d": "Сегодня ночью сервер светится для вас; ваша анонимная легенда попадёт в логи.", "t4n": "Счастливые шестёрки", "t4d": "Миска получает золотую каёмку. Этот донат держит её живой почти полгода.", "t5n": "Полное спонсорство", "t5d": "Это не донат, это усыновление. Примите один громкий виртуальный поклон.", "tier_go": "Нажмите, чтобы скопировать адрес →", "sp_title": "Один-единственный<br><span class=\"grad\">канал спонсорства</span>", "sp_desc": "Отсканируйте код или скопируйте адрес и отправьте из своего кошелька.<br>Адрес для приёма <b style=\"color:#f7f3ec\">может только получать — никогда отправлять</b>, поэтому его публикация не несёт никакого риска кражи.", "qr_cap": "Сканируйте для отправки · защита от подмены", "copy_btn": "Копировать адрес", "copy_done": "Скопировано ✓", "ck1": "<b>Тройная проверка перед отправкой:</b> начинается с <code>TSef</code>, заканчивается <code>SdCNt</code>, всего <b>34 символа</b> — так побеждают вредоносы буфера обмена, подменяющие адреса; самый частый трюк кражи крипты.", "ck2": "<b>Доверяйте только этой странице:</b> я никогда не прошу переводы в личке, по почте или в комментариях. Любой «адрес владельца» в другом месте — самозванец.", "ck3": "<b>Только USDT в сети TRON:</b> активы, отправленные в неверной сети, потеряны навсегда, и вне цепи я ничего не могу сделать.", "ck4": "<b>Мало — не думая, много — подумав:</b> переводы в блокчейне необратимы — сначала маленький тестовый перевод надёжнее всего.", "board_t": "Рейтинг кармы · Вакантно", "board_p": "Этот сайт ещё не получил свой первый донат. Место кита № 1 пустует — вдруг это вы, проходящий мимо?<br>(Не волнуйтесь: рейтинг тоже анонимный. Этот сайт ничью информацию не собирает и не публикует.)", "faq_title": "Просить, но <span class=\"grad\">прозрачно</span>.", "q1t": "Куда на самом деле уходят деньги?", "q1p": "Каждый цент кормит аренду этого сервера, чтобы он оставался онлайн и играл со всеми. Это безжалостная машина по пожиранию денег без иной цели — никаких курсов, групп и обещанной доходности. Чисто ради шутки.", "q2t": "Безопасно ли публиковать адрес?", "q2p": "Да. Адрес для приёма — как публичный счёт только для пополнения: платить может любой, а вывести деньги по нему нельзя — приватный ключ, который двигает средства, никогда не выходит в сеть и не появляется ни на одной странице. Настоящая опасность — самозванцы с другим адресом: доверяйте только тому, что на этой странице.", "q3t": "Отправил не туда — вернут?", "q3p": "Нет. Перевод в блокчейне — пролитая вода. Поэтому меню так и нудит: проверяйте края, начинайте с малого. Если ошибётесь, даже я не смогу вернуть.", "q4t": "Этот сайт собирает мои данные?", "q4p": "Нет. Это одна чисто статическая страница: без аккаунтов, форм, аналитики и cookie. Вы приходите, смотрите, стучите по рыбе, уходите — без следа, и я понятия не имею, кто вы. Такие чистые сайты нынче редкость.", "foot1": "© 2026 Анонимный пользователь сети · Сервер в облаке, миска на земле", "foot2": "Чисто статическая страница: без бэкенда, без базы, без слежки — хакерам остаётся только стучать по рыбе", "meta_title": "Кибер-попрошайка · Милостыня онлайн | Миска готова, ждём китов", "meta_desc": "Маленький облачный сайт анонимного пользователя, выживающий на бесплатных кредитах. Проходящие киты: донаты USDT · TRON приветствуются. Статическая страница, ничего не собирает.", "toast_copied": "Адрес скопирован ✓", "toast_tier": "Адрес скопирован для уровня {amt} ✓", "toast_verify": "При вставке проверьте: начало TSef · конец SdCNt · 34 символа", "float_merit": "Карма +1", "merit_100": "100 кармы! Будда кивает, сервер кланяется 🙏", "merit_1000": "1000 кармы! Вы официально кит 👑"}};
+const ADDR = 'TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt';
+let CUR = 'zh-CN';
+function T(key){ const d = I18N[CUR] || I18N['zh-CN']; return (d && d[key]) || (I18N['zh-CN'] && I18N['zh-CN'][key]) || key; }
 
-  // fuel bar
-  setTimeout(() => { document.getElementById('fuelFill').style.width = '62%'; }, 500);
-
-  // marquee duplicate
+function detectLang(){
+  try { const s = localStorage.getItem('cyber_lang'); if (s && I18N[s]) return s; } catch (e) {}
+  const nav = ((navigator.language || 'zh-CN') + ' ' + ((navigator.languages || []).join(' '))).toLowerCase();
+  const first = (navigator.language || 'zh-CN').toLowerCase();
+  if (first.startsWith('zh')) return /(tw|hk|mo|hant)/.test(first) ? 'zh-TW' : 'zh-CN';
+  const map = { en:'en', ja:'ja', ko:'ko', es:'es', fr:'fr', de:'de', pt:'pt', ru:'ru' };
+  return map[first.split('-')[0]] || 'en';
+}
+function applyLang(l, save){
+  if (!I18N[l]) l = 'zh-CN';
+  CUR = l;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = T(el.dataset.i18n); });
+  document.title = T('meta_title');
+  const md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute('content', T('meta_desc'));
+  document.documentElement.lang = l;
+  const sel = document.getElementById('langSel');
+  if (sel) sel.value = l;
+  buildMarquee();
+  if (save) { try { localStorage.setItem('cyber_lang', l); } catch (e) {} }
+}
+function buildMarquee(){
   const track = document.getElementById('marqueeTrack');
-  track.innerHTML += track.innerHTML;
+  const html = '<span>' + T('marquee') + '</span>';
+  track.innerHTML = html + html;
+}
 
-  // tilt cards
-  if (matchMedia('(hover:hover)').matches) {
-    document.querySelectorAll('.tilt').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+// reveal on scroll
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// fuel bar
+setTimeout(() => { document.getElementById('fuelFill').style.width = '62%'; }, 500);
+
+// tilt cards
+if (matchMedia('(hover:hover)').matches) {
+  document.querySelectorAll('.tilt').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateY(-4px)`;
     });
-  }
-
-  // toast
-  const toast = document.getElementById('toast'); let toastTimer;
-  function showToast(msg){
-    toast.textContent = msg; toast.classList.add('show');
-    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
-  }
-
-  // copy address
-  const ADDR = 'TSefnQ87F7jcTW8cNVW11wkYvyjjXSdCNt';
-  async function copyAddr(prefix){
-    try { await navigator.clipboard.writeText(ADDR); }
-    catch (e) {
-      const ta = document.createElement('textarea');
-      ta.value = ADDR; document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); } catch (_) {}
-      ta.remove();
-    }
-    showToast((prefix || '地址已复制 ✓') + ' 粘贴时请核对：开头 TSef · 结尾 SdCNt · 共 34 位');
-  }
-  const copyBtn = document.getElementById('copyBtn');
-  copyBtn.addEventListener('click', () => { copyAddr(); copyBtn.textContent = '已复制 ✓'; setTimeout(() => copyBtn.textContent = '复制地址', 2200); });
-  document.getElementById('walletAddr').addEventListener('click', () => copyAddr());
-  document.querySelectorAll('.tier').forEach(t => t.addEventListener('click', () => copyAddr('已按 ' + t.dataset.copy + ' 档复制地址 ✓')));
-
-  // muyu (electronic wooden fish)
-  let merit = 0;
-  try { merit = parseInt(localStorage.getItem('cyber_merit') || '0', 10) || 0; } catch (e) {}
-  const meritNum = document.getElementById('meritNum');
-  meritNum.textContent = merit;
-  const muyuBtn = document.getElementById('muyuBtn'), muyuWrap = document.getElementById('muyuWrap');
-  let audioCtx = null;
-  function knock(){
-    try {
-      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
-      o.type = 'sine'; o.frequency.setValueAtTime(880, audioCtx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(240, audioCtx.currentTime + 0.09);
-      g.gain.setValueAtTime(0.25, audioCtx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.16);
-      o.connect(g); g.connect(audioCtx.destination);
-      o.start(); o.stop(audioCtx.currentTime + 0.18);
-    } catch (e) {}
-  }
-  muyuBtn.addEventListener('click', e => {
-    merit++; meritNum.textContent = merit;
-    try { localStorage.setItem('cyber_merit', String(merit)); } catch (err) {}
-    muyuBtn.classList.remove('hit'); void muyuBtn.offsetWidth; muyuBtn.classList.add('hit');
-    knock();
-    const f = document.createElement('span');
-    f.className = 'float1'; f.textContent = '功德 +1';
-    const r = muyuWrap.getBoundingClientRect();
-    f.style.left = (e.clientX - r.left - 30 + (Math.random() * 40 - 20)) + 'px';
-    f.style.top = (e.clientY - r.top - 16) + 'px';
-    muyuWrap.appendChild(f); setTimeout(() => f.remove(), 1000);
-    if (merit === 100) showToast('功德破百！佛祖点头，服务器鞠躬 🙏');
-    if (merit === 1000) showToast('功德破千！您已是大佬本佬 👑');
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
+}
 
-  // starfield
-  (function(){
-    const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
-    let W, H, pts = [], mouse = { x: -9999, y: -9999 };
-    function resize(){
-      W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
-      const n = Math.min(100, Math.floor(W * H / 17000));
-      pts = Array.from({ length: n }, () => ({
-        x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32,
-        r: Math.random() * 1.6 + .4
-      }));
+// toast
+const toast = document.getElementById('toast'); let toastTimer;
+function showToast(msg){
+  toast.textContent = msg; toast.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+// copy address
+async function copyAddr(prefixKey, amt){
+  try { await navigator.clipboard.writeText(ADDR); }
+  catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = ADDR; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (_) {}
+    ta.remove();
+  }
+  const head = prefixKey === 'tier' ? T('toast_tier').replace('{amt}', amt) : T('toast_copied');
+  showToast(head + ' ' + T('toast_verify'));
+}
+const copyBtn = document.getElementById('copyBtn');
+copyBtn.addEventListener('click', () => {
+  copyAddr('plain');
+  copyBtn.textContent = T('copy_done');
+  setTimeout(() => { copyBtn.textContent = T('copy_btn'); }, 2200);
+});
+document.getElementById('walletAddr').addEventListener('click', () => copyAddr('plain'));
+document.querySelectorAll('.tier').forEach(t => t.addEventListener('click', () => copyAddr('tier', t.dataset.amt)));
+
+// muyu (electronic wooden fish)
+let merit = 0;
+try { merit = parseInt(localStorage.getItem('cyber_merit') || '0', 10) || 0; } catch (e) {}
+const meritNum = document.getElementById('meritNum');
+meritNum.textContent = merit;
+const muyuBtn = document.getElementById('muyuBtn'), muyuWrap = document.getElementById('muyuWrap');
+let audioCtx = null;
+function knock(){
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(880, audioCtx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(240, audioCtx.currentTime + 0.09);
+    g.gain.setValueAtTime(0.25, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.16);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + 0.18);
+  } catch (e) {}
+}
+muyuBtn.addEventListener('click', e => {
+  merit++; meritNum.textContent = merit;
+  try { localStorage.setItem('cyber_merit', String(merit)); } catch (err) {}
+  muyuBtn.classList.remove('hit'); void muyuBtn.offsetWidth; muyuBtn.classList.add('hit');
+  knock();
+  const f = document.createElement('span');
+  f.className = 'float1'; f.textContent = T('float_merit');
+  const r = muyuWrap.getBoundingClientRect();
+  f.style.left = (e.clientX - r.left - 30 + (Math.random() * 40 - 20)) + 'px';
+  f.style.top = (e.clientY - r.top - 16) + 'px';
+  muyuWrap.appendChild(f); setTimeout(() => f.remove(), 1000);
+  if (merit === 100) showToast(T('merit_100'));
+  if (merit === 1000) showToast(T('merit_1000'));
+});
+
+// language select
+document.getElementById('langSel').addEventListener('change', e => applyLang(e.target.value, true));
+
+// starfield
+(function(){
+  const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+  let W, H, pts = [], mouse = { x: -9999, y: -9999 };
+  function resize(){
+    W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
+    const n = Math.min(100, Math.floor(W * H / 17000));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32,
+      r: Math.random() * 1.6 + .4
+    }));
+  }
+  resize(); addEventListener('resize', resize);
+  cv.parentElement.addEventListener('mousemove', e => {
+    const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  cv.parentElement.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  (function draw(){
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7);
+      ctx.fillStyle = 'rgba(255,214,150,.7)'; ctx.fill();
     }
-    resize(); addEventListener('resize', resize);
-    cv.parentElement.addEventListener('mousemove', e => {
-      const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
-    });
-    cv.parentElement.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
-    (function draw(){
-      ctx.clearRect(0, 0, W, H);
-      for (const p of pts) {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7);
-        ctx.fillStyle = 'rgba(255,214,150,.7)'; ctx.fill();
-      }
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy;
-          if (d < 12000) {
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(255,180,84,${(1 - d / 12000) * .15})`; ctx.stroke();
-          }
-        }
-        const a = pts[i], dx = a.x - mouse.x, dy = a.y - mouse.y, d = dx * dx + dy * dy;
-        if (d < 26000) {
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(255,94,138,${(1 - d / 26000) * .3})`; ctx.stroke();
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy;
+        if (d < 12000) {
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(255,180,84,${(1 - d / 12000) * .15})`; ctx.stroke();
         }
       }
-      requestAnimationFrame(draw);
-    })();
+      const a = pts[i], dx = a.x - mouse.x, dy = a.y - mouse.y, d = dx * dx + dy * dy;
+      if (d < 26000) {
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(255,94,138,${(1 - d / 26000) * .3})`; ctx.stroke();
+      }
+    }
+    requestAnimationFrame(draw);
   })();
+})();
+
+// init language (auto-detect system language)
+applyLang(detectLang(), false);
 </script>
 </body>
 </html>
