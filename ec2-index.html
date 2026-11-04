@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>赛博乞讨 · 在线要饭 | 碗已备好，只等大佬</title>
 <meta name="description" content="一位佚名网友的云端小破站。服务器靠抵扣金续命，路过大佬赏口饭吃：USDT · TRON。纯静态页面，不收集任何信息。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥣</text></svg>">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="theme-color" content="#070608">
 <style>
   :root{
     --bg:#070608; --card:#0e0c10; --line:rgba(255,255,255,.09);
@@ -483,19 +487,24 @@ document.querySelectorAll('.tier').forEach(t => t.addEventListener('click', () =
 // muyu (electronic wooden fish) — global shared counter via /api/merit
 const meritNum = document.getElementById('meritNum');
 const muyuBtn = document.getElementById('muyuBtn'), muyuWrap = document.getElementById('muyuWrap');
-let pendingTaps = 0, flushTimer = null, myTaps = 0;
-function setMerit(n){ meritNum.textContent = n; }
+let serverCount = 0, pendingTaps = 0, inFlight = 0, shown = 0, flushTimer = null, myTaps = 0, failStreak = 0;
+function renderMerit(){
+  const target = serverCount + pendingTaps + inFlight;
+  if (target > shown) { shown = target; meritNum.textContent = shown; } // monotonic: the number never goes down
+}
 async function fetchMerit(){
   try {
     const r = await fetch('/api/merit', { cache: 'no-store' });
     if (!r.ok) throw new Error('api');
     const d = await r.json();
-    if (typeof d.count === 'number') setMerit(d.count);
-  } catch (e) { /* API unreachable: keep showing the local optimistic count */ }
+    // skip while a tap batch is in flight, so a poll can never undercut unacknowledged taps
+    if (typeof d.count === 'number' && !inFlight && d.count > serverCount) { serverCount = d.count; renderMerit(); }
+  } catch (e) { /* keep the local optimistic display */ }
 }
 async function flushTaps(){
-  if (!pendingTaps) return;
-  const n = Math.min(pendingTaps, 20); pendingTaps -= n;
+  if (!pendingTaps || inFlight) return;
+  const n = Math.min(pendingTaps, 20);
+  pendingTaps -= n; inFlight += n;
   try {
     const r = await fetch('/api/merit/tap', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -503,8 +512,13 @@ async function flushTaps(){
     });
     if (!r.ok) throw new Error('api');
     const d = await r.json();
-    if (typeof d.count === 'number') setMerit(d.count);
-  } catch (e) { /* drop silently; the fish must never break */ }
+    inFlight -= n; failStreak = 0;
+    if (typeof d.count === 'number' && d.count > serverCount) serverCount = d.count;
+  } catch (e) {
+    inFlight -= n; pendingTaps += n; // put the taps back; retried on the next taps
+    if (++failStreak >= 3) pendingTaps = 0; // server unreachable for a while: stop insisting, display stays local
+  }
+  renderMerit();
   if (pendingTaps) { clearTimeout(flushTimer); flushTimer = setTimeout(flushTaps, 700); }
 }
 function scheduleFlush(){ clearTimeout(flushTimer); flushTimer = setTimeout(flushTaps, 700); }
@@ -525,16 +539,17 @@ function knock(){
 }
 muyuBtn.addEventListener('click', e => {
   myTaps++;
-  setMerit((parseInt(meritNum.textContent, 10) || 0) + 1); // optimistic
-  pendingTaps++; scheduleFlush();
+  pendingTaps++; renderMerit(); scheduleFlush();
   muyuBtn.classList.remove('hit'); void muyuBtn.offsetWidth; muyuBtn.classList.add('hit');
   knock();
-  const f = document.createElement('span');
-  f.className = 'float1'; f.textContent = T('float_merit');
-  const r = muyuWrap.getBoundingClientRect();
-  f.style.left = (e.clientX - r.left - 30 + (Math.random() * 40 - 20)) + 'px';
-  f.style.top = (e.clientY - r.top - 16) + 'px';
-  muyuWrap.appendChild(f); setTimeout(() => f.remove(), 1000);
+  if (muyuWrap.querySelectorAll('.float1').length < 6) {
+    const f = document.createElement('span');
+    f.className = 'float1'; f.textContent = T('float_merit');
+    const r = muyuWrap.getBoundingClientRect();
+    f.style.left = (e.clientX - r.left - 30 + (Math.random() * 40 - 20)) + 'px';
+    f.style.top = (e.clientY - r.top - 16) + 'px';
+    muyuWrap.appendChild(f); setTimeout(() => f.remove(), 1000);
+  }
   if (myTaps === 100) showToast(T('merit_100'));
   if (myTaps === 1000) showToast(T('merit_1000'));
 });
